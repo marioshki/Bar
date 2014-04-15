@@ -7,31 +7,32 @@ html
 		meta(name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi")
 		link(rel="stylesheet" type="text/css" href="/static/lib/foundation.min.css")
 		link(rel="stylesheet" type="text/css" href="/static/lib/normalize.css")
+		link(rel="stylesheet" type="text/css" href="/static/estilos/estilos.css")
 	body(ng-app="app")
-		nav(class="top-bar" data-topbar)
-			ul(class="title-area")
-				li(class="name")
+		nav(data-topbar).top-bar
+			ul.title-area
+				li.name
 					h1
-						a(href="#/") Bar
-				li(class="toggle-topbar menu-icon")
+						a(href="#/").text-center Bar
+				li.toggle-topbar.menu-icon
 					a(href="#") Menu
 			section(class="top-bar-section")
-				ul(class="right")
+				ul.right
 					li
-						a(href="#/") Home
+						a(href="#/").text-center Home
 					li
-						a(href="#/oferta") Oferta
+						a(href="#/oferta").text-center Oferta
 					li
-						a(href="#/productos") Productos
+						a(href="#/productos").text-center Productos
 					li(class="has-dropdown")
-						a(href="#") Contacto
+						a(href="#").text-center Contacto
 						ul(class="dropdown")
 							li
-								a(href="#/sobre") Sobre Nosotros
+								a(href="#/sobre").text-center Sobre Nosotros
 							li
-								a(href="#/donde") Donde estamos
+								a(href="#/donde").text-center Donde estamos
 							li
-								a(href="#/llamanos") LLamanos
+								a(href="#/llamanos").text-center LLamanos
 		div(ng-view="")
 		script(type="text/javascript" src="/static/lib/vendor/modernizr.js")
 		script(type="text/javascript" src="/static/lib/vendor/jquery.js")
@@ -40,6 +41,7 @@ html
 		script(type="text/javascript" src="/static/lib/foundation/foundation.accordion.js")
 		script(type="text/javascript" src="/static/lib/angular.min.js")
 		script(type="text/javascript" src="/static/lib/angular-route.min.js")
+		script(type="text/javascript" src="/static/lib/angular-animate.min.js")
 		script(type="text/javascript" src="/static/controller/api.js")
 		script(type="text/javascript" src="cordova.js")
 		include plantillas/index
