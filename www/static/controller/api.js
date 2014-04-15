@@ -38,7 +38,6 @@ app.controller('prodController',function($scope,$http){
 			console.log(data);
 			$scope.productos = data;
 		}).
-		
 		error(function(data,status,headers,config){
 			console.log(status);
 		});
