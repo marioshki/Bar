@@ -15,3 +15,11 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
   hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px       
 );
 }
+
+.texto-oscuro{
+	color:#3A2F0B;
+}
+
+.texto-claro{
+	color:#F2F5A9;
+}

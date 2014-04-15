@@ -9,30 +9,30 @@ html
 		link(rel="stylesheet" type="text/css" href="/static/lib/normalize.css")
 		link(rel="stylesheet" type="text/css" href="/static/estilos/estilos.css")
 	body(ng-app="app")
-		nav(data-topbar).top-bar.blur
+		nav(data-topbar).top-bar.blur.texto-oscuro
 			ul.title-area
-				li.name.blur
+				li.name.blur.texto-oscuro
 					h1
-						a(href="#/").text-center.blur Bar
-				li.toggle-topbar.menu-icon.blur
-					a(href="#") Menu
-			section.top-bar-section.blur
+						a.text-center.blur.texto-oscuro Bar
+				li.toggle-topbar.menu-icon.blur.texto-oscuro
+					a Menu
+			section.top-bar-section.blur.texto-oscuro
 				ul.right
 					li
-						a(href="#/").text-center Home
+						a(href="#/").text-center.blur.texto-oscuro Home
 					li
-						a(href="#/oferta").text-center Oferta
+						a(href="#/oferta").text-center.blur.texto-oscuro Oferta
 					li
-						a(href="#/productos").text-center Productos
+						a(href="#/productos").text-center.blur.texto-oscuro Productos
 					li(class="has-dropdown")
-						a(href="#").text-center Contacto
+						a(href="#").text-center.blur.texto-oscuro Contacto
 						ul(class="dropdown")
 							li
-								a(href="#/sobre").text-center Sobre Nosotros
+								a(href="#/sobre").text-center.blur.texto-oscuro Sobre Nosotros
 							li
-								a(href="#/donde").text-center Donde estamos
+								a(href="#/donde").text-center.blur.texto-oscuro Donde estamos
 							li
-								a(href="#/llamanos").text-center LLamanos
+								a(href="#/llamanos").text-center.blur.texto-oscuro LLamanos
 		div(ng-view="")
 		script(type="text/javascript" src="/static/lib/vendor/modernizr.js")
 		script(type="text/javascript" src="/static/lib/vendor/jquery.js")
