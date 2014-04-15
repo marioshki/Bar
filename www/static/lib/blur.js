@@ -245,7 +245,7 @@
 						'background-attachment': 'fixed',
 						'background-position': '0 0'
 					});
-					$glue.draggable();
+					//$glue.draggable();
 				}
 			};
 			Storage.prototype.cacheChecksum = function (opts) {
