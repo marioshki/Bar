@@ -1,18 +1,45 @@
 var app = angular.module('app',['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
-  $routeProvider
+	$routeProvider
 		.when('/',{
 			templateUrl: 'index.html',
-			controller: 'Controlador',
+			controller: 'Controller',
+		})
+		.when('/productos',{
+			templateUrl:'productos.html',
+			controller:'prodController',
+		})
+		.when('/oferta',{
+			templateUrl:'oferta.html',
+			controller:'prodController',
+		})
+		.when('/sobre',{
+			templateUrl:'sobre.html',
+			controller:'prodController',
+		})
+		.when('/donde',{
+			templateUrl:'donde.html',
+			controller:'prodController',
 		})
 		.otherwise({
-			redirectTo:'/'
-		})
-
+			redirectTo:'/',
+		});
 });
 
-app.controller('Controlador',function($scope){
+app.controller('Controller',function($scope){
+	console.log("home");
+});
 
-console.log("HEY NIGGAH");
+app.controller('prodController',function($scope,$http){
+	console.log("productos");
+	$http({method:'GET',url:'/productos'}).
+		success(function(data,status,headers,config){
+			console.log(data);
+			$scope.productos = data;
+		}).
+		
+		error(function(data,status,headers,config){
+			console.log(status);
+		});
 });
