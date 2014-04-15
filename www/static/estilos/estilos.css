@@ -10,3 +10,12 @@ body{
 .texto-claro{
 	color:#F2F5A9 !important;
 }
+
+.top-bar-section ul {
+	background : none !important;
+	
+}
+
+.top-bar-section .dropdown li.title h5 a{
+	color:#888 !important;
+}
