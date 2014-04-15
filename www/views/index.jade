@@ -2,11 +2,45 @@ doctype html
 html
 	head
 		title Bienvenido!
-		script(src="/static/angular.min.js")
-		link(rel='stylesheet', href='/static/foundation.min.css')
-		link(rel='stylesheet', href='/static/normalize.css')
-
-	body
-		div(class="nav-bar")
-
+		meta(charset="utf-8")
+		meta(name="format-detection" content="telephone=no")
+		meta(name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi")
+		link(rel="stylesheet" type="text/css" href="http://localhost:20001/static/lib/foundation.min.css")
+		link(rel="stylesheet" type="text/css" href="http://localhost:20001/static/lib/normalize.css")
+	body(ng-controller="Controlador")
+		nav(class="top-bar" data-topbar)
+			ul(class="title-area")
+				li(class="name")
+					h1
+						a(href="/") Bar
+				li(class="toggle-topbar menu-icon")
+					a(href="#") Menu
+			section(class="top-bar-section")
+				ul(class="right")
+					li
+						a(href="/") Home
+					li
+						a(href="/oferta") Oferta
+					li
+						a(href="/productos") Productos
+					li(class="has-dropdown")
+						a(href="#") Contacto
+						ul(class="dropdown")
+							li
+								a(href="/sobre") Sobre Nosotros
+							li
+								a(href="/donde") Donde estamos
+							li
+								a(href="/llamanos") LLamanos
 		div(ng-view="")
+		script(type="text/javascript" src="http://localhost:20001/static/lib/vendor/modernizr.js")
+		script(type="text/javascript" src="http://localhost:20001/static/lib/vendor/jquery.js")
+		script(type="text/javascript" src="http://localhost:20001/static/lib/vendor/fastclick.js")
+		script(type="text/javascript" src="http://localhost:20001/static/lib/foundation.min.js")
+		script(type="text/javascript" src="cordova.js")
+		script(type="text/javascript" src="http://localhost:20001/static/lib/angular.min.js")
+		script(type="text/javascript" src="http://localhost:20001/static/lib/angular-route.min.js")
+		script(type="text/javascript" src="http://localhost:20001/static/controller/api.js")
+		script(type="text/ng-template" id="index.html")
+			div EYO MA NIGGAH
+		script $(document).foundation();

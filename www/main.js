@@ -15,17 +15,22 @@ app.get('/', function(req, res){
 });
 
 app.get('/productos', function(req, res){
-  res.render('productos');
+  res.render('index');
 });
 
 app.get('/oferta', function(req, res){
-  res.render('oferta');
+  res.render('index');
 });
 
-app.get('/contacto', function(req, res){
-  res.render('contacto');
+app.get('/sobre', function(req, res){
+  res.render('index');
 });
 
+app.get('/donde', function(req, res){
+  res.render('index');
+});
 
-
+app.get('/llamanos', function(req, res){
+  res.render('index');
+});
 app.listen(20001);
