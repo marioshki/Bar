@@ -42,3 +42,11 @@ app.controller('prodController',function($scope,$http){
 			console.log(status);
 		});
 });
+
+$(document).ready(function(){
+	$('.blur').blurjs({
+		draggable: true,
+		overlay: 'rgba(255,255,255,0.1)',
+		radius:10
+	});	
+});

@@ -9,14 +9,14 @@ html
 		link(rel="stylesheet" type="text/css" href="/static/lib/normalize.css")
 		link(rel="stylesheet" type="text/css" href="/static/estilos/estilos.css")
 	body(ng-app="app")
-		nav(data-topbar).top-bar
+		nav(data-topbar).top-bar.blur
 			ul.title-area
-				li.name
+				li.name.blur
 					h1
-						a(href="#/").text-center Bar
-				li.toggle-topbar.menu-icon
+						a(href="#/").text-center.blur Bar
+				li.toggle-topbar.menu-icon.blur
 					a(href="#") Menu
-			section(class="top-bar-section")
+			section.top-bar-section.blur
 				ul.right
 					li
 						a(href="#/").text-center Home
@@ -42,6 +42,7 @@ html
 		script(type="text/javascript" src="/static/lib/angular.min.js")
 		script(type="text/javascript" src="/static/lib/angular-route.min.js")
 		script(type="text/javascript" src="/static/lib/angular-animate.min.js")
+		script(type="text/javascript" src="/static/lib/blur.js")
 		script(type="text/javascript" src="/static/controller/api.js")
 		script(type="text/javascript" src="cordova.js")
 		include plantillas/index
