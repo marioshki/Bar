@@ -98,7 +98,8 @@
       var S = this.S,
           tabs = tab.closest('[' + this.attr_name() + ']'),
           anchor = tab.children('a').first(),
-          target_hash = '#' + anchor.attr('href').split('#')[1],
+          //target_hash = '#' + anchor.attr('href').split('#')[1],
+          target_hash = anchor.attr("data-target"),
           target = S(target_hash),
           siblings = tab.siblings(),
           settings = tabs.data(this.attr_name(true) + '-init');
