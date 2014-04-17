@@ -16,17 +16,17 @@ script(type="text/ng-template" id="productos.html")
 
 				div.tabs-content
 					div#panel1-1.content
-						div(ng-repeat="vino in vinos")
-							p {{vino.nombre}} : {{vino.precio}} €
+						div(ng-repeat="v in vino")
+							p {{v.nombre}} : {{v.precio}} €
 					div#panel1-2.content
-						div(ng-repeat="cerveza in cervezas")
-							p {{cerveza.nombre}} : {{cerveza.precio}} €
+						div(ng-repeat="c in cerveza")
+							p {{c.nombre}} : {{c.precio}} €
 					div#panel1-3.content
-						div(ng-repeat="copa in copas")
-							p {{copa.nombre}} : {{copa.precio}} €
+						div(ng-repeat="c in cubata")
+							p {{c.nombre}} : {{c.precio}} €
 					div#panel1-4.content
-						div(ng-repeat="licor in licores")
-							p {{licor.nombre}} : {{licor.precio}} €
+						div(ng-repeat="l in licor")
+							p {{l.nombre}} : {{l.precio}} €
 
 		dd
 			a(data-target="#panel2") Tapas
@@ -39,11 +39,11 @@ script(type="text/ng-template" id="productos.html")
 
 				div.tabs-content
 					div#panel2-1.content
-						div(ng-repeat="bocadillo in bocadillos")
-							p {{bocadillo.nombre}} : {{bocadillo.precio}} €
+						div(ng-repeat="m in bocadillo")
+							p {{m.nombre}} : {{m.precio}} €
 					div#panel2-2.content
-						div(ng-repeat="racion in raciones")
-							p {{racion.nombre}} : {{racion.precio}} €
+						div(ng-repeat="r in racion")
+							p {{r.nombre}} : {{r.precio}} €
 
 		dd
 			a(data-target="#panel3") Menús
@@ -66,16 +66,19 @@ script(type="text/ng-template" id="productos.html")
 
 				div.tabs-content
 					div#panel3-1.content
-						p First panel content goes here...
+						p Lunes
+						p {{lunes.descripcion}}
 					div#panel3-2.content
-						p Second panel content goes here...
+						p {{martes.descripcion}}
 					div#panel3-3.content
-						p Third panel content goes here...
+						p {{miercoles.descripcion}}
 					div#panel3-4.content
-						p Fourth panel content goes here...
+						p {{jueves.descripcion}}
 					div#panel3-5.content
-						p Fourth panel content goes here...	
+						p {{viernes.descripcion}}	
 					div#panel3-6.content
-						p Fourth panel content goes here...
+						p {{sabado.descripcion}}
+						p {{sabado.precio}}
 					div#panel3-7.content
-						p Fourth panel content goes here...					
+						p Domingo
+						p {{domingo.descripcion}}			

@@ -5,11 +5,13 @@ var jade = require('jade');
 var app = express();
 var productos;
 var oferta;
+var menus;
 //var datos;
 MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
     if(err) throw err;
 	productos = db.collection('productos');
 	oferta = db.collection('oferta');
+  menus = db.collection('menus');
 	//datos = db.collection('datos');
  });
 
@@ -53,5 +55,12 @@ app.get('/llamanos', function(req, res){
   	//datos.find({telefono}).toArray(function(err,results){
   	//res.json(results);
   //});
+});
+
+app.get('/menus',function(req,res){
+  res.setHeader('Content-Type','application/json');
+  menus.find().toArray(function(err,results){
+    res.json(results);
+  });
 });
 app.listen(20001);

@@ -63,8 +63,6 @@ app.controller('ofertaController',function($scope,$http){
 			console.log(status);
 		});
 });
-
-
 app.controller('prodController',function($scope,$http){
 	$http({method:'GET',url:'/productos'}).
 		success(function(data,status,headers,config){
@@ -73,27 +71,29 @@ app.controller('prodController',function($scope,$http){
 		error(function(data,status,headers,config){
 			console.log(status);
 	});
+	$http({method:'GET',url:'/menus'}).
+		success(function(data,status,headers,config){
+			$scope.separarmenus(data);
+		}).
+		error(function(data,status,headers,config){
+			console.log(status);
+	});
 
 	$scope.separar = function(data){
-		console.log(data);
-		$scope.vinos = _.filter(data, function(objeto){
-			return objeto.clase == 'vino';
+		_.each(data,function(x){
+			if(_.isUndefined($scope[x.clase])){
+				$scope[x.clase]=[];
+			}
+			$scope[x.clase].push(x);
 		});
-		$scope.cervezas = _.filter(data,function(objeto){
-			return objeto.clase == 'cerveza';
+		console.log($scope['mini-bocadillo']);
+	}
+
+	$scope.separarmenus = function(data){
+		_.each(data,function(x){
+			$scope[x.dia] = x;
 		});
-		$scope.copas = _.filter(data,function(objeto){
-			return objeto.clase == 'cubata';
-		});
-		$scope.licores = _.filter(data,function(objeto){
-			return (objeto.clase == "licor");
-		});
-		$scope.bocadillos = _.filter(data,function(objeto){
-			return (objeto.clase == "mini-bocadillo");
-		});
-		$scope.raciones = _.filter(data,function(objeto){
-			return (objeto.clase == "racion");
-		});
+		console.log($scope.domingo);
 	}
 });
 

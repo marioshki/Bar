@@ -1,5 +1,4 @@
 script(type="text/ng-template" id="admin.html")
-
 	div.blur.text-center
 		h1 Bienvenido Admin!
 		h3 ¿Qué quieres hacer?
@@ -9,17 +8,27 @@ script(type="text/ng-template" id="admin.html")
 		div.row
 			div.large-8.center
 				h5 Titulo:
-				input(type='text' ng-model='oferta.Titulo')
+				input(type='text' ng-model='oferta.titulo')
 			div.large-8.center
 				h5 Precio:
-				textarea(ng-model='oferta.Descripcion')
+				textarea(ng-model='oferta.descripcion')
+			input(type="submit" ng-click='guardar(oferta)' value='Guardar cambios').blur
 		h3 Cambiar productos
 		br
 		div(ng-repeat="producto in productos").row
 			div.large-3.left
 				h5 Nombre :
 				input(type="text" ng-model="producto.nombre")
-			div.large-3.right
+			div.large-3.left
 				h5 Precio :
 				input(type="text" ng-model="producto.precio")
-		input(type="submit" ng-click='guardar()' value='Guardar cambios').blur
+				input(type="submit" ng-click='guardar(producto)' value='Guardar {{producto.nombre}}').blur
+		div.row
+			div.large-3.left
+				h5 Nombre :
+				input(type="text" ng-model="nuevoproducto.nombre")
+			div.large-3.left
+				h5 Precio :
+				input(type="text" ng-model="nuevoproducto.precio")
+			div.large-3.left
+				input(type="submit" ng-click="guardar(nuevoproducto)" value="Insertar")
