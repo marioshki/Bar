@@ -2,23 +2,35 @@ script(type="text/ng-template" id="productos.html")
 	div(ng-repeat="producto in productos")
 		a().text-center {{producto.tipo}}
 
+
 	dl(data-accordion).accordion
 		dd
-			a(href="#panel1") Accordion1
-			div(id="panel1").content.active
+			a(data-target="#panel1") Accordion 1
+			div#panel1.content.active
 				dl(data-tab).tabs
 					dd.active
-						a(href="#panel2-2") Tab1
+						a(data-target="#panel2-1") Tab 1
 					dd
-						a(href="#panel2-3") Tab2
+						a(data-target="#panel2-2") Tab 2
 					dd
-						a(href="#panel2-4") Tab3
+						a(data-target="#panel2-3") Tab 3
+					dd
+						a(data-target="#panel2-4") Tab 4
+
 				div.tabs-content
-					div(id="panel2-1").content.active
-						p First
-					div(id="panel2-2").content
-						p Second
-					div(id="panel2-3").content
-						p Third
-					div(id="panel2-4").content
-						p Fourth
+					div#panel2-1.content.active
+						p First panel content goes here...
+					div#panel2-2.content
+						p Second panel content goes here...
+					div#panel2-3.content
+						p Third panel content goes here...
+					div#panel2-4.content
+						p Fourth panel content goes here...
+
+		dd
+			a(data-target="#panel2") Accordion 2
+			div#panel2.content Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+		dd
+			a(data-target="#panel3") Accordion 3
+			div#panel3.content Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
