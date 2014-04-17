@@ -32,7 +32,6 @@ app.controller('Controller',function($scope){
 });
 
 app.controller('prodController',function($scope,$http){
-	console.log("productos");
 	$http({method:'GET',url:'/productos'}).
 		success(function(data,status,headers,config){
 			console.log(data);

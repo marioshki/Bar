@@ -1,3 +1,24 @@
 script(type="text/ng-template" id="productos.html")
 	div(ng-repeat="producto in productos")
 		a().text-center {{producto.tipo}}
+
+	dl(data-accordion).accordion
+		dd
+			a(href="#panel1") Accordion1
+			div(id="panel1").content.active
+				dl(data-tab).tabs
+					dd.active
+						a(href="#panel2-2") Tab1
+					dd
+						a(href="#panel2-3") Tab2
+					dd
+						a(href="#panel2-4") Tab3
+				div.tabs-content
+					div(id="panel2-1").content.active
+						p First
+					div(id="panel2-2").content
+						p Second
+					div(id="panel2-3").content
+						p Third
+					div(id="panel2-4").content
+						p Fourth
