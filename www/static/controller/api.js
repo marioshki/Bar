@@ -12,7 +12,7 @@ app.config(function($routeProvider, $locationProvider) {
 		})
 		.when('/oferta',{
 			templateUrl:'oferta.html',
-			controller:'prodController',
+			controller:'ofertaController',
 		})
 		.when('/sobre',{
 			templateUrl:'sobre.html',
@@ -21,6 +21,10 @@ app.config(function($routeProvider, $locationProvider) {
 		.when('/donde',{
 			templateUrl:'donde.html',
 			controller:'prodController',
+		})
+		.when('/admin',{
+			templateUrl:'admin.html',
+			controller:'adminController',
 		})
 		.otherwise({
 			redirectTo:'/',
@@ -31,6 +35,36 @@ app.controller('Controller',function($scope){
 	console.log("home");
 });
 
+app.controller('adminController',function($scope,$http){
+	$http({method:'GET',url:'/oferta'})
+	.success(function(data,status,headers,config){
+		$scope.oferta = data[0];
+	})
+	.error(function(data,status,headers,config){
+		console.log(status);
+	});
+
+	$http({method:'GET',url:'/productos'})
+	.success(function(data,status,headers,config){
+		$scope.productos = data;
+	})
+	.error(function(data,status,headers,config){
+		console.log(status);
+	});
+});
+
+app.controller('ofertaController',function($scope,$http){
+	$http({method:'GET',url:'/oferta'}).
+		success(function(data,status,headers,config){
+			console.log(data);
+			$scope.oferta = data[0];
+		}).
+		error(function(data,status,headers,config){
+			console.log(status);
+		});
+});
+
+
 app.controller('prodController',function($scope,$http){
 	$http({method:'GET',url:'/productos'}).
 		success(function(data,status,headers,config){
@@ -38,18 +72,27 @@ app.controller('prodController',function($scope,$http){
 		}).
 		error(function(data,status,headers,config){
 			console.log(status);
-		});
+	});
 
 	$scope.separar = function(data){
 		console.log(data);
-		$scope.bebidas = _.filter(data, function(objeto){
-			return objeto.tipo == 'bebida';
+		$scope.vinos = _.filter(data, function(objeto){
+			return objeto.clase == 'vino';
 		});
-		$scope.tapas = _.filter(data,function(objeto){
-			return objeto.tipo == 'tapa';
+		$scope.cervezas = _.filter(data,function(objeto){
+			return objeto.clase == 'cerveza';
 		});
-		$scope.menus = _.filter(data,function(objeto){
-			return objeto.tipo == 'menu';
+		$scope.copas = _.filter(data,function(objeto){
+			return objeto.clase == 'cubata';
+		});
+		$scope.licores = _.filter(data,function(objeto){
+			return (objeto.clase == "licor");
+		});
+		$scope.bocadillos = _.filter(data,function(objeto){
+			return (objeto.clase == "mini-bocadillo");
+		});
+		$scope.raciones = _.filter(data,function(objeto){
+			return (objeto.clase == "racion");
 		});
 	}
 });
@@ -61,11 +104,5 @@ app.run(function($rootScope) {
 });
 
 $(document).ready(function(){
-	$('.blur').blurjs({
-		draggable: true,
-		overlay: 'rgba(255,255,255,0.1)',
-		radius:10
-	});
-
 	$(document).foundation();
 });

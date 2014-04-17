@@ -1,0 +1,25 @@
+script(type="text/ng-template" id="admin.html")
+
+	div.blur.text-center
+		h1 Bienvenido Admin!
+		h3 ¿Qué quieres hacer?
+		br
+		h3 Cambiar la oferta
+		br
+		div.row
+			div.large-8.center
+				h5 Titulo:
+				input(type='text' ng-model='oferta.Titulo')
+			div.large-8.center
+				h5 Precio:
+				textarea(ng-model='oferta.Descripcion')
+		h3 Cambiar productos
+		br
+		div(ng-repeat="producto in productos").row
+			div.large-3.left
+				h5 Nombre :
+				input(type="text" ng-model="producto.nombre")
+			div.large-3.right
+				h5 Precio :
+				input(type="text" ng-model="producto.precio")
+		input(type="submit" ng-click='guardar()' value='Guardar cambios').blur

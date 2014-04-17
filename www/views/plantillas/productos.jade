@@ -1,8 +1,5 @@
 script(type="text/ng-template" id="productos.html")
 	div(ng-repeat="bebida in bebidas")
-		a().text-center {{bebida.nombre}}
-
-
 	dl(data-accordion).accordion
 		dd
 			a(data-target="#panel1") Bebidas
@@ -19,13 +16,17 @@ script(type="text/ng-template" id="productos.html")
 
 				div.tabs-content
 					div#panel1-1.content
-						p First panel content goes here...
+						div(ng-repeat="vino in vinos")
+							p {{vino.nombre}} : {{vino.precio}} €
 					div#panel1-2.content
-						p Second panel content goes here...
+						div(ng-repeat="cerveza in cervezas")
+							p {{cerveza.nombre}} : {{cerveza.precio}} €
 					div#panel1-3.content
-						p Third panel content goes here...
+						div(ng-repeat="copa in copas")
+							p {{copa.nombre}} : {{copa.precio}} €
 					div#panel1-4.content
-						p Fourth panel content goes here...
+						div(ng-repeat="licor in licores")
+							p {{licor.nombre}} : {{licor.precio}} €
 
 		dd
 			a(data-target="#panel2") Tapas
@@ -38,9 +39,11 @@ script(type="text/ng-template" id="productos.html")
 
 				div.tabs-content
 					div#panel2-1.content
-						p First panel content goes here...
+						div(ng-repeat="bocadillo in bocadillos")
+							p {{bocadillo.nombre}} : {{bocadillo.precio}} €
 					div#panel2-2.content
-						p Second panel content goes here...
+						div(ng-repeat="racion in raciones")
+							p {{racion.nombre}} : {{racion.precio}} €
 
 		dd
 			a(data-target="#panel3") Menús

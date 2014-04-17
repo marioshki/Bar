@@ -4,12 +4,12 @@ var jade = require('jade');
  	,format = require('util').format;
 var app = express();
 var productos;
-var ofertas;
+var oferta;
 //var datos;
 MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
     if(err) throw err;
 	productos = db.collection('productos');
-	ofertas = db.collection('ofertas');
+	oferta = db.collection('oferta');
 	//datos = db.collection('datos');
  });
 
@@ -29,13 +29,20 @@ app.get('/productos', function(req, res){
   productos.find().toArray(function(err,results){
   	res.json(results);
   });
-  //res.json({pene:'penesito'});
 });
 
 app.get('/oferta', function(req, res){
+  res.setHeader('Content-Type','application/json');
+  oferta.find().toArray(function(err,results){
+    res.json(results);
+  });
 });
 
 app.get('/sobre', function(req, res){
+});
+
+app.get('/admin',function(req, res){
+
 });
 
 app.get('/donde', function(req, res){
