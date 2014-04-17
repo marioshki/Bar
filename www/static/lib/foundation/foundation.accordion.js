@@ -23,7 +23,8 @@
       .off('.fndtn.accordion')
       .on('click.fndtn.accordion', '[' + this.attr_name() + '] dd > a', function (e) {
         var accordion = S(this).closest('[' + self.attr_name() + ']'),
-            target = S('#' + this.href.split('#')[1]),
+            //target = S('#' + this.href.split('#')[1]),
+            target = S(S(this).attr("data-target")),
             siblings = S('dd > .content', accordion),
             aunts = $('dd', accordion),
             settings = accordion.data(self.attr_name(true) + '-init'),
