@@ -42,10 +42,18 @@ app.controller('prodController',function($scope,$http){
 		});
 });
 
+app.run(function($rootScope) {
+	$rootScope.$on('$viewContentLoaded', function () {
+		$(document).foundation();
+	});
+});
+
 $(document).ready(function(){
 	$('.blur').blurjs({
 		draggable: true,
 		overlay: 'rgba(255,255,255,0.1)',
 		radius:10
-	});	
+	});
+
+	$(document).foundation();
 });
