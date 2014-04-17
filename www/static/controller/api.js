@@ -34,12 +34,24 @@ app.controller('Controller',function($scope){
 app.controller('prodController',function($scope,$http){
 	$http({method:'GET',url:'/productos'}).
 		success(function(data,status,headers,config){
-			console.log(data);
-			$scope.productos = data;
+			$scope.separar(data);
 		}).
 		error(function(data,status,headers,config){
 			console.log(status);
 		});
+
+	$scope.separar = function(data){
+		console.log(data);
+		$scope.bebidas = _.filter(data, function(objeto){
+			return objeto.tipo == 'bebida';
+		});
+		$scope.tapas = _.filter(data,function(objeto){
+			return objeto.tipo == 'tapa';
+		});
+		$scope.menus = _.filter(data,function(objeto){
+			return objeto.tipo == 'menu';
+		});
+	}
 });
 
 app.run(function($rootScope) {

@@ -1,36 +1,78 @@
 script(type="text/ng-template" id="productos.html")
-	div(ng-repeat="producto in productos")
-		a().text-center {{producto.tipo}}
+	div(ng-repeat="bebida in bebidas")
+		a().text-center {{bebida.nombre}}
 
 
 	dl(data-accordion).accordion
 		dd
-			a(data-target="#panel1") Accordion 1
-			div#panel1.content.active
+			a(data-target="#panel1") Bebidas
+			div#panel1.content
 				dl(data-tab).tabs
 					dd.active
-						a(data-target="#panel2-1") Tab 1
+						a(data-target="#panel1-1") Vinos
 					dd
-						a(data-target="#panel2-2") Tab 2
+						a(data-target="#panel1-2") Cervezas
 					dd
-						a(data-target="#panel2-3") Tab 3
+						a(data-target="#panel1-3") Cubatas
 					dd
-						a(data-target="#panel2-4") Tab 4
+						a(data-target="#panel1-4") Licores
 
 				div.tabs-content
-					div#panel2-1.content.active
+					div#panel1-1.content
 						p First panel content goes here...
-					div#panel2-2.content
+					div#panel1-2.content
 						p Second panel content goes here...
-					div#panel2-3.content
+					div#panel1-3.content
 						p Third panel content goes here...
-					div#panel2-4.content
+					div#panel1-4.content
 						p Fourth panel content goes here...
 
 		dd
-			a(data-target="#panel2") Accordion 2
-			div#panel2.content Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			a(data-target="#panel2") Tapas
+			div#panel2.content
+				dl(data-tab).tabs
+					dd
+						a(data-target="#panel2-1") Mini-Bocadillos
+					dd
+						a(data-target="#panel2-2") Raciones
+
+				div.tabs-content
+					div#panel2-1.content
+						p First panel content goes here...
+					div#panel2-2.content
+						p Second panel content goes here...
 
 		dd
-			a(data-target="#panel3") Accordion 3
-			div#panel3.content Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			a(data-target="#panel3") Menús
+			div#panel3.content
+				dl(data-tab).tabs
+					dd
+						a(data-target="#panel3-1") Lunes
+					dd
+						a(data-target="#panel3-2") Martes
+					dd
+						a(data-target="#panel3-3") Miercoles
+					dd
+						a(data-target="#panel3-4") Jueves
+					dd
+						a(data-target="#panel3-5") Viernes
+					dd
+						a(data-target="#panel3-6") Sabado
+					dd
+						a(data-target="#panel3-7") Domingo
+
+				div.tabs-content
+					div#panel3-1.content
+						p First panel content goes here...
+					div#panel3-2.content
+						p Second panel content goes here...
+					div#panel3-3.content
+						p Third panel content goes here...
+					div#panel3-4.content
+						p Fourth panel content goes here...
+					div#panel3-5.content
+						p Fourth panel content goes here...	
+					div#panel3-6.content
+						p Fourth panel content goes here...
+					div#panel3-7.content
+						p Fourth panel content goes here...					
