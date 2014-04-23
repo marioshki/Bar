@@ -216,7 +216,8 @@
               section.css({right: -(100 * topbar.data('index')) + '%'});
               section.find('>.name').css({right: 100 * topbar.data('index') + '%'});
             }
-
+            console.log($this.sibling('ul').outerHeight(true));
+            console.log(topbar.data('height'));
             topbar.css('height', $this.siblings('ul').outerHeight(true) + topbar.data('height'));
           }
         });
