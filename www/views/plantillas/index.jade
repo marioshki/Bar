@@ -6,20 +6,16 @@ script(type="text/ng-template" id="index.html")
 		h4.text-center Bienvenido al bar , todo lo que tiene que hacer es navegar por la aplicación utilizando el menu superior-derecha.No te arrepentirás, están RIQUIIIISIMAS.
 	br
 	div.row
-		div.large-12
+		div(style="z-index:-1").large-12
 			ul(data-orbit)
 				li
-					img(src="static/imagenes/1.jpeg" alt="slide 1")
-					div.orbit-caption 
+					img(src="static/imagenes/1.jpeg" alt="slide 1") 
 				li
 					img(src="static/imagenes/2.jpeg" alt="slide 2")
-					div.orbit-caption
 				li
 					img(src="static/imagenes/3.jpeg" alt="slide 3")
-					div.orbit-caption
 				li
 					img(src="static/imagenes/4.jpeg" alt="slide 4")
-					div.orbit-caption
 				li
 					img(src="static/imagenes/5.jpeg" alt="slide 5")
-					div.orbit-caption
+			div(style="z-index:1")

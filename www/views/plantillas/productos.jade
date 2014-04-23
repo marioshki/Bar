@@ -1,6 +1,6 @@
 script(type="text/ng-template" id="productos.html")
 	div(ng-repeat="bebida in bebidas")
-	dl(data-accordion).accordion
+	dl(data-accordion).accordion.blur
 		dd
 			a(data-target="#panel1") Bebidas
 			div#panel1.content
@@ -13,7 +13,6 @@ script(type="text/ng-template" id="productos.html")
 						a(data-target="#panel1-3") Cubatas
 					dd
 						a(data-target="#panel1-4") Licores
-
 				div.tabs-content
 					div#panel1-1.content
 						div(ng-repeat="v in vino")
