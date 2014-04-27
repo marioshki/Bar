@@ -6,29 +6,64 @@ script(type="text/ng-template" id="admin.html")
 		h3 Cambiar la oferta
 		br
 		div.row
-			div.large-8.center
+			div.large-5.left.columns
 				h5 Titulo:
+			div.large-5.left.columns
+				h5 Descripcion:
+			div.large-2.left.columns
+				h5 Guardar
+		div.row
+			div.large-5.left.columns
 				input(type='text' ng-model='oferta.titulo')
-			div.large-8.center
-				h5 Precio:
+			div.large-5.left.columns
 				textarea(ng-model='oferta.descripcion')
-			input(type="submit" ng-click='guardar(oferta)' value='Guardar cambios').blur
+			div.large-2.left.columns
+				input(type="submit" ng-click='guardar(oferta)' value='Guardar cambios').blur
 		h3 Cambiar productos
 		br
-		div(ng-repeat="producto in productos").row
-			div.large-3.left
-				h5 Nombre :
-				input(type="text" ng-model="producto.nombre")
-			div.large-3.left
-				h5 Precio :
-				input(type="text" ng-model="producto.precio")
-				input(type="submit" ng-click='guardar(producto)' value='Guardar {{producto.nombre}}').blur
 		div.row
-			div.large-3.left
+			div.large-3.left.columns
 				h5 Nombre :
-				input(type="text" ng-model="nuevoproducto.nombre")
-			div.large-3.left
+			div.large-2.left.columns
+				h5 Tipo:
+			div.large-2.left.columns
+				h5 Clase
+			div.large-2.left.columns
 				h5 Precio :
+			div.large-2.left.columns
+				h5 Guardar Nuevo
+		div.row
+			div.large-3.left.columns
+				input(type="text" ng-model="nuevoproducto.nombre")
+			div.large-2.left.columns
+				input(type="text" ng-model="nuevoproducto.tipo")
+			div.large-2.left.columns
+				input(type="text" ng-model="nuevoproducto.clase")
+			div.large-2.left.columns
 				input(type="text" ng-model="nuevoproducto.precio")
-			div.large-3.left
-				input(type="submit" ng-click="guardar(nuevoproducto)" value="Insertar")
+			div.large-2.left.columns
+				input(type="submit" ng-click='guardar(producto)' value='Guardar nuevo {{nuevoproducto.nombre}}').blur
+
+		div(ng-repeat="producto in productos")
+			div.row
+				div.large-3.left.columns
+					h5 Nombre :
+				div.large-2.left.columns
+					h5 Tipo:
+				div.large-2.left.columns
+					h5 Clase
+				div.large-2.left.columns
+					h5 Precio :
+				div.large-2.left.columns
+					h5 Guardar
+			div.row
+				div.large-3.left.columns
+					input(type="text" ng-model="producto.nombre")
+				div.large-2.left.columns
+					input(type="text" ng-model="producto.tipo")
+				div.large-2.left.columns
+					input(type="text" ng-model="producto.clase")
+				div.large-2.left.columns
+					input(type="text" ng-model="producto.precio")
+				div.large-2.left.columns
+					input(type="submit" ng-click='guardar(producto)' value='Guardar {{producto.nombre}}').blur
