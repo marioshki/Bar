@@ -36,6 +36,7 @@ app.controller('Controller',function($scope){
 });
 
 app.controller('adminController',function($scope,$http){
+	nuevoproducto = {nombre:"",clase:"",precio:""}
 	$http({method:'GET',url:'/oferta'})
 	.success(function(data,status,headers,config){
 		$scope.oferta = data[0];
@@ -51,6 +52,26 @@ app.controller('adminController',function($scope,$http){
 	.error(function(data,status,headers,config){
 		console.log(status);
 	});
+
+	$scope.guardarProducto = function(producto){
+		$http({method:'POST',url:'/insertarproducto',data:{producto:producto}})
+	}
+	$scope.guardarOferta = function(oferta){
+		$http({method:'POST',url:'/insertaroferta',data:{oferta:oferta}})
+	}
+	$scope.elminiarProducot = function(producto){
+		$http({method:'POST',url:'/eliminarproducto',data:{producto:producto}})
+	}
+
+	$scope.clases = 
+	[
+		{clase:'vino'},
+		{clase:'cerveza'},
+		{clase:'licor'},
+		{clase:'bocadillo'},
+		{clase:'racion'},
+		{clase:'cubata'}
+	];
 });
 
 app.controller('ofertaController',function($scope,$http){

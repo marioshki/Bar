@@ -63,4 +63,17 @@ app.get('/menus',function(req,res){
     res.json(results);
   });
 });
+
+app.post('/insertarproducto',function(req,res){
+
+})
+
+
+app.post('/eliminarproducto',function(req,res){
+
+})
+
+app.post('/insertaroferta',function(req,res){
+
+})
 app.listen(20001);
