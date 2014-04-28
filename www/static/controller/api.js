@@ -59,7 +59,7 @@ app.controller('adminController',function($scope,$http){
 	$scope.guardarOferta = function(oferta){
 		$http({method:'POST',url:'/insertaroferta',data:{oferta:oferta}})
 	}
-	$scope.elminiarProducot = function(producto){
+	$scope.eliminarProducto = function(producto){
 		$http({method:'POST',url:'/eliminarproducto',data:{producto:producto}})
 	}
 

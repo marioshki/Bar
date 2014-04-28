@@ -14,7 +14,7 @@ MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
   menus = db.collection('menus');
 	//datos = db.collection('datos');
  });
-
+app.use(require('connect').bodyParser());
 app.use("/static", express.static(__dirname + '/static'));
 
 app.engine('jade', jade.__express);
@@ -49,13 +49,6 @@ app.get('/admin',function(req, res){
 
 app.get('/donde', function(req, res){
 });
- 
-app.get('/llamanos', function(req, res){
-	//res.setHeader('Content-Type', 'application/json');
-  	//datos.find({telefono}).toArray(function(err,results){
-  	//res.json(results);
-  //});
-});
 
 app.get('/menus',function(req,res){
   res.setHeader('Content-Type','application/json');
@@ -65,15 +58,24 @@ app.get('/menus',function(req,res){
 });
 
 app.post('/insertarproducto',function(req,res){
-
+  if(req.body)
+    productos.save(req.body.producto,function(err,result){
+      if(err) throw err;
+    });
 })
 
 
 app.post('/eliminarproducto',function(req,res){
-
+  if(req.body)
+    productos.remove(req.body.producto,function(err,result){
+      if(err) throw err;
+    });
 })
 
 app.post('/insertaroferta',function(req,res){
-
+  if(req.body)
+    oferta.save(req.body.oferta,function(err,result){
+      if(err) throw err;
+    });
 })
 app.listen(20001);
