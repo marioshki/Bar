@@ -43,7 +43,68 @@ html
 								li.blur-big
 									a(href="tel:658804413").text-center.texto-oscuro
 										strong LLamanos
-		div(ng-view="")
+		div(ng-controller="adminController").blur.text-center
+			h1 Bienvenido Admin!
+			h3 ¿Qué quieres hacer?
+			br
+			h3 Cambiar la oferta
+			br
+			div.row
+				div.large-5.left.columns
+					h5 Titulo:
+				div.large-5.left.columns
+					h5 Descripcion:
+				div.large-2.left.columns
+					h5 Guardar
+			div.row
+				div.large-5.left.columns
+					input(type='text' ng-model='oferta.titulo')
+				div.large-5.left.columns
+					textarea(ng-model='oferta.descripcion')
+				div.large-2.left.columns
+					input(type="submit" ng-click='guardarOferta(oferta)' value='Guardar cambios').blur
+			h3 Cambiar productos
+			br
+			div.row
+				div.large-3.left.columns
+					h5 Nombre :
+				div.large-3.left.columns
+					h5 Clase
+				div.large-3.left.columns
+					h5 Precio :
+				div.large-3.left.columns
+					h5 Guardar Nuevo
+			div.row
+				div.large-3.left.columns
+					input(type="text" ng-model="nuevoproducto.nombre")
+				div.large-3.left.columns
+					select(ng-model="nuevoproducto.clase" ng-options="clase as clase for clase in clases")
+				div.large-3.left.columns
+					input(type="text" ng-model="nuevoproducto.precio")
+				div.large-3.left.columns
+					input(type="submit" ng-click='guardarProducto(nuevoproducto)' value='Guardar nuevo').blur
+
+			div(ng-repeat="producto in productos")
+				div.row
+					div.large-2.left.columns
+						h5 Nombre :
+					div.large-2.left.columns
+						h5 Clase:
+					div.large-2.left.columns
+						h5 Precio :
+					div.large-4.left.columns
+						h5 Guardar / Eliminar
+				div.row
+					div.large-2.left.columns
+						b {{producto.nombre}}
+					div.large-2.left.columns
+						b {{producto.clase}}
+					div.large-2.left.columns
+						input(type="text" ng-model="producto.precio")
+					div.large-2.left.columns
+						input(type="submit" ng-click='guardarProducto(producto)' value='Guardar').blur
+					div.large-2.left.columns
+						input(type="submit" ng-click='eliminarProducto(producto)' value='Eliminar').blur
 		script(type="text/javascript" src="/static/lib/vendor/modernizr.js")
 		script(type="text/javascript" src="/static/lib/vendor/jquery.js")
 		script(type="text/javascript" src="/static/lib/vendor/fastclick.js")

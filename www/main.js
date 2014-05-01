@@ -67,6 +67,7 @@ app.get('/sobre', function(req, res){
 });
 
 app.get('/admin',auth,function(req, res){
+	res.render('admin');
 });
 
 app.get('/donde', function(req, res){

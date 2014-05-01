@@ -55,15 +55,15 @@ app.controller('adminController',function($scope,$http,$route){
 
 	$scope.guardarProducto = function(producto){
 		$http({method:'POST',url:'/insertarproducto',data:{producto:producto}})
-		$route.reload();
+		location.reload();
 	}
 	$scope.guardarOferta = function(oferta){
 		$http({method:'POST',url:'/insertaroferta',data:{oferta:oferta}})
-		$route.reload();
+		location.reload();
 	}
 	$scope.eliminarProducto = function(producto){
 		$http({method:'POST',url:'/eliminarproducto',data:{producto:producto}})
-		$route.reload();
+		location.reload();
 	}
 
 	$scope.clases = 
