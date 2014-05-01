@@ -68,12 +68,12 @@ app.controller('adminController',function($scope,$http,$route){
 
 	$scope.clases = 
 	[
-		{clase:'vino'},
-		{clase:'cerveza'},
-		{clase:'licor'},
-		{clase:'bocadillo'},
-		{clase:'racion'},
-		{clase:'cubata'}
+		'vino',
+		'cerveza',
+		'licor',
+		'bocadillo',
+		'racion',
+		'cubata'
 	];
 });
 

@@ -34,7 +34,7 @@ script(type="text/ng-template" id="admin.html")
 			div.large-3.left.columns
 				input(type="text" ng-model="nuevoproducto.nombre")
 			div.large-3.left.columns
-				select(ng-model="nuevoproducto.clase" ng-options="clase.clase for clase in clases")
+				select(ng-model="nuevoproducto.clase" ng-options="clase as clase for clase in clases")
 			div.large-3.left.columns
 				input(type="text" ng-model="nuevoproducto.precio")
 			div.large-3.left.columns
