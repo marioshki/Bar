@@ -35,7 +35,7 @@ app.controller('Controller',function($scope){
 	console.log("home");
 });
 
-app.controller('adminController',function($scope,$http){
+app.controller('adminController',function($scope,$http,$route){
 	nuevoproducto = {nombre:"",clase:"",precio:""}
 	$http({method:'GET',url:'/oferta'})
 	.success(function(data,status,headers,config){
@@ -55,12 +55,15 @@ app.controller('adminController',function($scope,$http){
 
 	$scope.guardarProducto = function(producto){
 		$http({method:'POST',url:'/insertarproducto',data:{producto:producto}})
+		$route.reload();
 	}
 	$scope.guardarOferta = function(oferta){
 		$http({method:'POST',url:'/insertaroferta',data:{oferta:oferta}})
+		$route.reload();
 	}
 	$scope.eliminarProducto = function(producto){
 		$http({method:'POST',url:'/eliminarproducto',data:{producto:producto}})
+		$route.reload();
 	}
 
 	$scope.clases = 
