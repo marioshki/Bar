@@ -3,6 +3,7 @@ var jade = require('jade');
  var MongoClient = require('mongodb').MongoClient
 	,format = require('util').format;
 var ObjectID = require('mongodb').ObjectID;
+var basicAuth = require('basic-auth');
 var app = express();
 var productos;
 var oferta;
@@ -17,12 +18,24 @@ MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
  });
 
 
+var auth = function (req, res, next) {
+  function unauthorized(res) {
+    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+    return res.send(401);
+  };
 
-//funcion donde se dice el usuario y el password del auth de admin
-function authorize(username, password) {
-    return 'admin' === username & 'admin' === password;
-}
+  var user = basicAuth(req);
 
+  if (!user || !user.name || !user.pass) {
+    return unauthorized(res);
+  };
+
+  if (user.name === 'foo' && user.pass === 'bar') {
+    return next();
+  } else {
+    return unauthorized(res);
+  };
+};
 
 app.use(require('connect').bodyParser());
 app.use("/static", express.static(__dirname + '/static'));
@@ -53,8 +66,7 @@ app.get('/oferta', function(req, res){
 app.get('/sobre', function(req, res){
 });
 
-app.get('/admin',function(req, res){
-	express.basicAuth(authorize);
+app.get('/admin',auth,function(req, res){
 });
 
 app.get('/donde', function(req, res){
