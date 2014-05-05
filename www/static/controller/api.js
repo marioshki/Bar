@@ -55,15 +55,17 @@ app.controller('adminController',function($scope,$http,$route){
 
 	$scope.guardarProducto = function(producto){
 		$http({method:'POST',url:'/insertarproducto',data:{producto:producto}})
-		location.reload();
+			// .then(function(data){
+			// 		$scope.productos = data;
+			// 	},function(data){
+			// 		console.log('Error insertando producto');
+			// 	});
 	}
 	$scope.guardarOferta = function(oferta){
 		$http({method:'POST',url:'/insertaroferta',data:{oferta:oferta}})
-		location.reload();
 	}
 	$scope.eliminarProducto = function(producto){
 		$http({method:'POST',url:'/eliminarproducto',data:{producto:producto}})
-		location.reload();
 	}
 
 	$scope.clases = 
@@ -124,6 +126,19 @@ app.controller('prodController',function($scope,$http){
 app.run(function($rootScope) {
 	$rootScope.$on('$viewContentLoaded', function () {
 		$(document).foundation();
+	});
+
+	var socket = io.connect('http://localhost:20001');
+
+	socket.on('news', function (data) {
+		console.log(data);
+		socket.emit('my other event', { my: 'data' });
+	});
+
+	socket.on('actualizacion de producto', function (data) {
+		console.log("actualizacion de producto : ",data);
+		$rootScope.productos.push( data );
+		$rootScope.$apply();
 	});
 });
 

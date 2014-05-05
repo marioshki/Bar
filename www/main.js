@@ -5,10 +5,31 @@ var jade = require('jade');
 var ObjectID = require('mongodb').ObjectID;
 var basicAuth = require('basic-auth');
 var app = express();
+
+
+
+//COLECCIONES DE MONGODB
 var productos;
 var oferta;
 var menus;
-//var datos;
+
+//WEBSOCKET
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+//puerto que escucha express.
+server.listen(20001);
+
+io.set("log level",1);
+
+io.sockets.on('connection', function (socket) {
+	socket.emit('news', { hello: 'world' });
+	socket.on('my other event', function (data) {
+		console.log(data);
+	});
+});
+
+
 MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
 		if(err) throw err;
 	productos = db.collection('productos');
@@ -20,20 +41,20 @@ MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
 
 var auth = function (req, res, next) {
   function unauthorized(res) {
-    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-    return res.send(401);
+	res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+	return res.send(401);
   };
 
   var user = basicAuth(req);
 
   if (!user || !user.name || !user.pass) {
-    return unauthorized(res);
+	return unauthorized(res);
   };
 
   if (user.name === 'foo' && user.pass === 'bar') {
-    return next();
+	return next();
   } else {
-    return unauthorized(res);
+	return unauthorized(res);
   };
 };
 
@@ -85,10 +106,12 @@ app.post('/insertarproducto',function(req,res){
 		var _id = ObjectID(req.body.producto._id);
 		req.body.producto._id = _id;
 		productos.save(req.body.producto,function(err,result){
+			console.log(result , "--" , err);
 			if(err) throw err;
+			result = result == 1 ? req.body.producto : result;
+			io.sockets.emit("actualizacion de producto",result);
 		});
-})
-
+});
 
 app.post('/eliminarproducto',function(req,res){
 	if(req.body)
@@ -96,8 +119,9 @@ app.post('/eliminarproducto',function(req,res){
 		req.body.producto._id = _id;
 		productos.remove(req.body.producto,function(err,result){
 			if(err) throw err;
+			socket.emit("eliminacion de producto",result);
 		});
-})
+});
 
 app.post('/insertaroferta',function(req,res){
 	if(req.body)
@@ -105,6 +129,6 @@ app.post('/insertaroferta',function(req,res){
 		req.body.oferta._id = _id;
 		oferta.save(req.body.oferta,function(err,result){
 			if(err) throw err;
+			socket.emit("actualizacion de oferta",result);
 		});
-})
-app.listen(20001);
+});
