@@ -1,5 +1,21 @@
 var app = angular.module('app',['ngRoute']);
 
+app.service('SocketService', function($rootScope) {
+	var socket = io.connect('http://localhost:20001');
+
+	socket.on('actualizacion de producto', function (data) {
+		$rootScope.$emit("actualizarproducto",data);
+	});
+
+	socket.on('actualizacion de oferta', function (data) {
+		$rootScope.$emit("actualizaroferta",data);
+	});
+
+	socket.on('eliminacion de producto', function (data) {
+		$rootScope.$emit("eliminarproducto",data);
+	});
+});
+
 app.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/',{
@@ -32,17 +48,16 @@ app.config(function($routeProvider, $locationProvider) {
 });
 
 app.controller('Controller',function($scope){
-	console.log("home");
 });
 
-app.controller('adminController',function($scope,$http,$route){
+app.controller('adminController',function($scope,$http,$route,$rootScope){
+
 	nuevoproducto = {nombre:"",clase:"",precio:""}
 	$http({method:'GET',url:'/oferta'})
 	.success(function(data,status,headers,config){
 		$scope.oferta = data[0];
 	})
 	.error(function(data,status,headers,config){
-		console.log(status);
 	});
 
 	$http({method:'GET',url:'/productos'})
@@ -50,7 +65,6 @@ app.controller('adminController',function($scope,$http,$route){
 		$scope.productos = data;
 	})
 	.error(function(data,status,headers,config){
-		console.log(status);
 	});
 
 	$scope.guardarProducto = function(producto){
@@ -77,32 +91,74 @@ app.controller('adminController',function($scope,$http,$route){
 		'racion',
 		'cubata'
 	];
+
+	$rootScope.$on('actualizarproducto', function(ev, data) {
+		_.each($scope.productos, function(obj){
+			if(obj._id === data._id){
+				_.extend(obj, data);
+			}	
+		});
+		$scope.$apply();
+	});
+
+	$rootScope.$on('eliminarproducto', function(ev, data) {
+		var nuevosproductos = _.reject($scope.productos, function(prod){
+			return prod._id == data._id;
+		});
+		$scope.productos = nuevosproductos;
+		$scope.$apply();
+	});
+
 });
 
-app.controller('ofertaController',function($scope,$http){
+app.controller('ofertaController',function($scope,$http,$rootScope){
 	$http({method:'GET',url:'/oferta'}).
 		success(function(data,status,headers,config){
-			console.log(data);
 			$scope.oferta = data[0];
 		}).
 		error(function(data,status,headers,config){
-			console.log(status);
 		});
+
+	$rootScope.$on('actualizaroferta', function(ev, data) {
+		console.log(data);
+		$scope.oferta = data;
+		$scope.$apply();
+	});
+
 });
-app.controller('prodController',function($scope,$http){
+app.controller('prodController', function($scope, $http, $rootScope){
+
+	$rootScope.$on('actualizarproducto', function(ev, data) {
+		var clase = data.clase;
+		_.each($scope[clase], function(obj){
+			if(obj._id === data._id){
+				_.extend(obj, data);
+			}
+				
+		});
+		$scope.$apply();
+	});
+
+	$rootScope.$on('eliminarproducto', function(ev, data) {
+		var clase = data.clase;
+		var nuevosproductos = _.reject($scope[clase], function(prod){
+			return prod._id == data._id;
+		});
+		$scope[clase] = nuevosproductos;
+		$scope.$apply();
+	});
+
 	$http({method:'GET',url:'/productos'}).
 		success(function(data,status,headers,config){
 			$scope.separar(data);
 		}).
 		error(function(data,status,headers,config){
-			console.log(status);
 	});
 	$http({method:'GET',url:'/menus'}).
 		success(function(data,status,headers,config){
 			$scope.separarmenus(data);
 		}).
 		error(function(data,status,headers,config){
-			console.log(status);
 	});
 
 	$scope.separar = function(data){
@@ -112,33 +168,18 @@ app.controller('prodController',function($scope,$http){
 			}
 			$scope[x.clase].push(x);
 		});
-		console.log($scope['mini-bocadillo']);
 	}
 
 	$scope.separarmenus = function(data){
 		_.each(data,function(x){
 			$scope[x.dia] = x;
 		});
-		console.log($scope.domingo);
 	}
 });
 
-app.run(function($rootScope) {
+app.run(function($rootScope,SocketService) {
 	$rootScope.$on('$viewContentLoaded', function () {
 		$(document).foundation();
-	});
-
-	var socket = io.connect('http://localhost:20001');
-
-	socket.on('news', function (data) {
-		console.log(data);
-		socket.emit('my other event', { my: 'data' });
-	});
-
-	socket.on('actualizacion de producto', function (data) {
-		console.log("actualizacion de producto : ",data);
-		$rootScope.productos.push( data );
-		$rootScope.$apply();
 	});
 });
 

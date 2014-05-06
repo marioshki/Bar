@@ -22,13 +22,6 @@ server.listen(20001);
 
 io.set("log level",1);
 
-io.sockets.on('connection', function (socket) {
-	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', function (data) {
-		console.log(data);
-	});
-});
-
 
 MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
 		if(err) throw err;
@@ -106,7 +99,6 @@ app.post('/insertarproducto',function(req,res){
 		var _id = ObjectID(req.body.producto._id);
 		req.body.producto._id = _id;
 		productos.save(req.body.producto,function(err,result){
-			console.log(result , "--" , err);
 			if(err) throw err;
 			result = result == 1 ? req.body.producto : result;
 			io.sockets.emit("actualizacion de producto",result);
@@ -119,7 +111,7 @@ app.post('/eliminarproducto',function(req,res){
 		req.body.producto._id = _id;
 		productos.remove(req.body.producto,function(err,result){
 			if(err) throw err;
-			socket.emit("eliminacion de producto",result);
+			io.sockets.emit("eliminacion de producto",req.body.producto);
 		});
 });
 
@@ -129,6 +121,7 @@ app.post('/insertaroferta',function(req,res){
 		req.body.oferta._id = _id;
 		oferta.save(req.body.oferta,function(err,result){
 			if(err) throw err;
-			socket.emit("actualizacion de oferta",result);
+			result = result == 1 ? req.body.oferta : result;
+			io.sockets.emit("actualizacion de oferta",result);
 		});
 });
