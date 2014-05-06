@@ -1,7 +1,7 @@
 var app = angular.module('app',['ngRoute']);
 
 app.service('SocketService', function($rootScope) {
-	var socket = io.connect('http://localhost:20001');
+	var socket = io.connect('http://bar.alexandernst.com');
 
 	socket.on('actualizacion de producto', function (data) {
 		$rootScope.$emit("actualizarproducto",data);

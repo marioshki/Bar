@@ -1,3 +1,6 @@
+//variables de Express, Jade, Mongodb,basicAuth
+// y la instance de express.
+
 var express = require('express');
 var jade = require('jade');
  var MongoClient = require('mongodb').MongoClient
@@ -22,16 +25,15 @@ server.listen(20001);
 
 io.set("log level",1);
 
-
+//conexion a mongodb
 MongoClient.connect('mongodb://localhost:27017/bar', function(err, db) {
 		if(err) throw err;
 	productos = db.collection('productos');
 	oferta = db.collection('oferta');
 	menus = db.collection('menus');
-	//datos = db.collection('datos');
  });
 
-
+//auth para la parte de admin que me brinda basicAuth
 var auth = function (req, res, next) {
   function unauthorized(res) {
 	res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
@@ -44,32 +46,37 @@ var auth = function (req, res, next) {
 	return unauthorized(res);
   };
 
-  if (user.name === 'foo' && user.pass === 'bar') {
+  if (user.name === 'admin' && user.pass === 'sysadmin') {
 	return next();
   } else {
 	return unauthorized(res);
   };
 };
-
+//le indico a express la carpeta static, que es donde va el codigo
+//que no va a ser modificado
 app.use(require('connect').bodyParser());
 app.use("/static", express.static(__dirname + '/static'));
 
+//le indico que jade es el motor de renderizado de las paginas
 app.engine('jade', jade.__express);
 
+//le indico el directorio de las vistas
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+//peticiones de express y sus respuestas
+//renderiza la plantilla index, la principal de angularjs
 app.get('/', function(req, res){
 	res.render('index');
 });
-
+//devuelve productos
 app.get('/productos', function(req, res){
 	res.setHeader('Content-Type', 'application/json');
 	productos.find().toArray(function(err,results){
 		res.json(results);
 	});
 });
-
+//devuelve la oferta
 app.get('/oferta', function(req, res){
 	res.setHeader('Content-Type','application/json');
 	oferta.find().toArray(function(err,results){
@@ -79,21 +86,22 @@ app.get('/oferta', function(req, res){
 
 app.get('/sobre', function(req, res){
 });
-
+//renderiza la plantilla admin (que pide auth)
 app.get('/admin',auth,function(req, res){
 	res.render('admin');
 });
 
 app.get('/donde', function(req, res){
 });
-
+//devuelve los menus
 app.get('/menus',function(req,res){
 	res.setHeader('Content-Type','application/json');
 	menus.find().toArray(function(err,results){
 		res.json(results);
 	});
 });
-
+//inserta o actualiza dependiendo de si tiene o no _id
+//el producto enviado en el body del request.
 app.post('/insertarproducto',function(req,res){
 	if(req.body)
 		var _id = ObjectID(req.body.producto._id);
@@ -104,7 +112,7 @@ app.post('/insertarproducto',function(req,res){
 			io.sockets.emit("actualizacion de producto",result);
 		});
 });
-
+//elimina el producto enviado en el body del request.
 app.post('/eliminarproducto',function(req,res){
 	if(req.body)
 		var _id = ObjectID(req.body.producto._id);
@@ -114,7 +122,8 @@ app.post('/eliminarproducto',function(req,res){
 			io.sockets.emit("eliminacion de producto",req.body.producto);
 		});
 });
-
+//inserta o actualiza dependiendo de si tiene o no _id
+//la oferta enviada en el body del request
 app.post('/insertaroferta',function(req,res){
 	if(req.body)
 		var _id = ObjectID(req.body.oferta._id);
