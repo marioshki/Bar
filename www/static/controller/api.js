@@ -4,7 +4,7 @@ app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
 	socket.on('actualizacion de producto', function (data) {
-		navigator.notification.alert("Se ha actualizado un producto: ",data.name, function(){}, "Producto Actualizado")
+		window.plugin.notification.alert("Se ha actualizado un producto: ",data.name, function(){}, "Producto Actualizado")
 		$rootScope.$emit("actualizarproducto",data);
 	});
 
