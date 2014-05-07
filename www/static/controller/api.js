@@ -1,5 +1,10 @@
 var app = angular.module('app',['ngRoute']);
 
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    navigator.notification.alert("Se ha actualizado un producto: " , null, "Producto Actualizado");
+}
+
 app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
