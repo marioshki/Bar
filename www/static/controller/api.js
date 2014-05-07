@@ -2,6 +2,7 @@ var app = angular.module('app',['ngRoute']);
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+	console.log("aosdas");
     navigator.notification.alert("Se ha actualizado un producto: " , null, "Producto Actualizado");
 }
 
