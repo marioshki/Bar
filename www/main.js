@@ -20,7 +20,7 @@ var menus;
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
-//puerto que escucha express.
+//puerto que escucha el socket, que hace de intermediario entre el cliente y express.
 server.listen(20001);
 
 io.set("log level",1);

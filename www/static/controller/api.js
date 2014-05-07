@@ -4,7 +4,6 @@ app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
 	socket.on('actualizacion de producto', function (data) {
-		console.log(data);
 		$rootScope.$emit("actualizarproducto",data);
 	});
 
@@ -53,7 +52,7 @@ app.controller('Controller',function($scope){
 
 app.controller('adminController',function($scope,$http,$route,$rootScope){
 
-	nuevoproducto = {nombre:"",clase:"",precio:""}
+	$scope.nuevoproducto = {nombre:"",clase:"",precio:""}
 	$http({method:'GET',url:'/oferta'})
 	.success(function(data,status,headers,config){
 		$scope.oferta = data[0];
@@ -70,11 +69,6 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 
 	$scope.guardarProducto = function(producto){
 		$http({method:'POST',url:'/insertarproducto',data:{producto:producto}})
-			// .then(function(data){
-			// 		$scope.productos = data;
-			// 	},function(data){
-			// 		console.log('Error insertando producto');
-			// 	});
 	}
 	$scope.guardarOferta = function(oferta){
 		$http({method:'POST',url:'/insertaroferta',data:{oferta:oferta}})
@@ -103,7 +97,7 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 		});
 		if(!encontrado){
 			$scope.productos.push(data);
-			nuevoproducto = {nombre:"",clase:"",precio:""}
+			_.extend($scope.nuevoproducto, {nombre:"",clase:"",precio:""});
 		}
 		$scope.$apply();
 	});
