@@ -4,6 +4,7 @@ app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
 	socket.on('actualizacion de producto', function (data) {
+		console.log(data);
 		$rootScope.$emit("actualizarproducto",data);
 	});
 
@@ -93,11 +94,17 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 	];
 
 	$rootScope.$on('actualizarproducto', function(ev, data) {
+		var encontrado = false;
 		_.each($scope.productos, function(obj){
 			if(obj._id === data._id){
 				_.extend(obj, data);
-			}	
+				encontrado = true;
+			}
 		});
+		if(!encontrado){
+			$scope.productos.push(data);
+			nuevoproducto = {nombre:"",clase:"",precio:""}
+		}
 		$scope.$apply();
 	});
 
@@ -120,7 +127,6 @@ app.controller('ofertaController',function($scope,$http,$rootScope){
 		});
 
 	$rootScope.$on('actualizaroferta', function(ev, data) {
-		console.log(data);
 		$scope.oferta = data;
 		$scope.$apply();
 	});
@@ -129,13 +135,19 @@ app.controller('ofertaController',function($scope,$http,$rootScope){
 app.controller('prodController', function($scope, $http, $rootScope){
 
 	$rootScope.$on('actualizarproducto', function(ev, data) {
+		var encontrado = false;
+
 		var clase = data.clase;
 		_.each($scope[clase], function(obj){
 			if(obj._id === data._id){
 				_.extend(obj, data);
+				encontrado = true;
 			}
 				
 		});
+		if(!encontrado){
+			$scope[clase].push(data);
+		}
 		$scope.$apply();
 	});
 
