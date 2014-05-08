@@ -189,11 +189,12 @@ app.run(function($rootScope,SocketService) {
 		$(document).foundation();
 	});
 });
-
+//CUANDO SE CARGAN TODOS LOS JS SE EJECUTA ESTE EVENTO
 $(document).ready(function(){
 	$(document).foundation();
+	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function onDeviceReady() {
-    	navigator.notification.alert("Bienvenido al Bar!" , null, "Producto Actualizado");
+
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
 });
