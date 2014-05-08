@@ -4,7 +4,7 @@ app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
 	socket.on('actualizacion de producto', function (data) {
-		navigator.notification.alert("Se ha actualizado un producto: " + data.name, null, "Producto Actualizado")
+		navigator.notification.alert("Se ha actualizado un producto: " + data.nombre, null, "Producto Actualizado")
 		$rootScope.$emit("actualizarproducto",data);
 	});
 
@@ -193,8 +193,7 @@ app.run(function($rootScope,SocketService) {
 $(document).ready(function(){
 	$(document).foundation();
 	function onDeviceReady() {
-		console.log("aosdas");
-    	navigator.notification.alert("Se ha actualizado un producto: " , null, "Producto Actualizado");
+    	navigator.notification.alert("Bienvenido al Bar!" , null, "Producto Actualizado");
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
 });
