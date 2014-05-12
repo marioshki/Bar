@@ -1,5 +1,7 @@
 var app = angular.module('app',['ngRoute']);
 
+var pushNotification;
+
 app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
@@ -194,7 +196,27 @@ $(document).ready(function(){
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function onDeviceReady() {
-
+		pushNotification = window.plugins.pushNotification;
+	}
+	if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "Amazon" || device.platform == "amazon")
+	{
+		pushNotification.register(
+			successHandler,
+			errorHandler, {
+				"senderID":"AIzaSyA17vCpI_8Mz4F1XXvaUm84go9IRfhutGA",
+				"ecb":"onNotificationGCM"
+			});
+	}
+	else
+	{
+		pushNotification.register(
+			tokenHandler,
+			errorHandler, {
+				"badge":"true",
+				"sound":"true",
+				"alert":"true",
+				"ecb":"onNotificationAPN"
+			});
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
 });
