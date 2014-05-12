@@ -218,7 +218,7 @@
             }
             //console.log($this.sibling('ul').outerHeight(true));
             console.log(topbar.data('height'));
-            topbar.css('height', $this.siblings('ul').outerHeight(true) + topbar.data('height'));
+            topbar.css('height', /*$this.siblings('ul').outerHeight(true) + */topbar.data('height'));
           }
         });
       
