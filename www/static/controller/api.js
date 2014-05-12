@@ -197,29 +197,14 @@ $(document).ready(function(){
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function onDeviceReady() {
 		pushNotification = window.plugins.pushNotification;
-	if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "Amazon" || device.platform == "amazon")
-		{
-			pushNotification.register(
-				successHandler,
-				errorHandler, {
-					"senderID":"1047487760830",
-					"ecb":"onNotificationGCM"
-				});
-		}
-	else
-		{
-		 	pushNotification.register(
-				tokenHandler,
-				errorHandler, {
-					"badge":"true",
-					"sound":"true",
-					"alert":"true",
-					"ecb":"onNotificationAPN"
-				});
-		}
+		
+		pushNotification.register(
+			successHandler,
+			errorHandler, {
+				"senderID":"1047487760830",
+				"ecb":"onNotificationGCM"
+			});
 	
-
-
 	}
 
 	document.addEventListener("deviceready", onDeviceReady, false);
