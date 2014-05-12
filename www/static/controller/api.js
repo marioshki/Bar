@@ -227,15 +227,15 @@ $(document).ready(function(){
 					console.log('background notification');
 				}
 			}
-			console.log(e.payload.message);
+			console.log("payload message" + e.payload.message);
 			//Only works for GCM
-			console.log(e.payload.msgcnt);
+			console.log("payload.msgcnt" + e.payload.msgcnt);
 			//Only works on Amazon Fire OS
-			console.log(e.payload.timeStamp);
+			console.log("payload.time" + e.payload.timeStamp);
 		break;
 
 		case 'error':
-			console.log(e.msg);
+			console.log("error : "+e.msg);
 		break;
 
 		default:
