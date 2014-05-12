@@ -196,7 +196,7 @@ $(document).ready(function(){
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function onDeviceReady() {
-		pushNotification = window.plugins.pushNotification;ç
+		pushNotification = window.plugins.pushNotification;
 	if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "Amazon" || device.platform == "amazon")
 		{
 			pushNotification.register(
