@@ -196,14 +196,13 @@ $(document).ready(function(){
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function onNotificationGCM(e) {
-		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+		console.log(e.event);
 
 		switch( e.event )
 		{
 		case 'registered':
 			if ( e.regid.length > 0 )
 			{
-				$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 				// Your GCM push server needs to know the regID before it can push to this device
 				// here is where you might want to send it the regID for later use.
 				console.log("regID = " + e.regid);
@@ -215,30 +214,26 @@ $(document).ready(function(){
 			// you might want to play a sound to get the user's attention, throw up a dialog, etc.
 			if ( e.foreground )
 			{
-				$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
-				// if the notification contains a soundname, play it.
-				var my_media = new Media("/android_asset/www/"+e.soundname);
-				my_media.play();
+				console.log('inline notification');
 			}
 			else
 			{  // otherwise we were launched because the user touched a notification in the notification tray.
 				if ( e.coldstart )
 				{
-					$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+					console.log('coldstart notification');
 				}
 				else
 				{
-					$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-				}
+					console.log('background notification');
 			}
 
-			$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+			console.log(e.payload.message);
 			//Only works for GCM
-			   $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-			   //Only works on Amazon Fire OS
-			   $status.append('<li>MESSAGE -> TIME: ' + e.payload.timeStamp + '</li>');
-		break;
+			console.log(e.payload.msgcnt);
+			//Only works on Amazon Fire OS
+			console.log(e.payload.timeStamp);
+			break;
 
 		case 'error':
 			console.log(e.msg);
