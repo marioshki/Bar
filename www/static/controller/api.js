@@ -198,12 +198,12 @@ $(document).ready(function(){
 	function onDeviceReady() {
 		pushNotification = window.plugins.pushNotification;
 	}
-	if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "Amazon" || device.platform == "amazon")
+	if ( window.device.platform == 'android' || window.device.platform == 'Android' || window.device.platform == "Amazon" || window.device.platform == "amazon")
 	{
 		pushNotification.register(
 			successHandler,
 			errorHandler, {
-				"senderID":"AIzaSyA17vCpI_8Mz4F1XXvaUm84go9IRfhutGA",
+				"senderID":"1047487760830",
 				"ecb":"onNotificationGCM"
 			});
 	}
