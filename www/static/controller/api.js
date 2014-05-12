@@ -195,9 +195,16 @@ app.run(function($rootScope,SocketService) {
 $(document).ready(function(){
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
+	function successHandler (result) {
+    	alert('result = ' + result);
+	}
+
+	function errorHandler (error) {
+    	alert('error = ' + error);
+	}
+
 	function onDeviceReady() {
 		pushNotification = window.plugins.pushNotification;
-		
 		pushNotification.register(
 			successHandler,
 			errorHandler, {
