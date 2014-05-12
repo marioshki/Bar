@@ -214,7 +214,6 @@ $(document).ready(function(){
 			// you might want to play a sound to get the user's attention, throw up a dialog, etc.
 			if ( e.foreground )
 			{
-
 				console.log('inline notification');
 			}
 			else
@@ -226,14 +225,14 @@ $(document).ready(function(){
 				else
 				{
 					console.log('background notification');
+				}
 			}
-
 			console.log(e.payload.message);
 			//Only works for GCM
 			console.log(e.payload.msgcnt);
 			//Only works on Amazon Fire OS
 			console.log(e.payload.timeStamp);
-			break;
+		break;
 
 		case 'error':
 			console.log(e.msg);
@@ -242,7 +241,6 @@ $(document).ready(function(){
 		default:
 			console.log('default');
 		break;
-	  }
 	}
 
 	function successHandler (result) {
