@@ -242,7 +242,7 @@ $(document).ready(function(){
 			console.log('default');
 		break;
 	}
-
+}
 	function successHandler (result) {
 		alert('result = ' + result);
 	}
