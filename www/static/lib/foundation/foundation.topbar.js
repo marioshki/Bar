@@ -219,7 +219,7 @@
             //console.log($this.sibling('ul').outerHeight(true));
             console.log(topbar.data('height'));
             //topbar.css('height', /$this.siblings('ul').outerHeight(true) + topbar.data('height'));
-            topbar.css('height',150);
+            topbar.css('height',200);
           }
         });
       
