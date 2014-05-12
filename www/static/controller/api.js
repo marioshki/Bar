@@ -257,7 +257,7 @@ $(document).ready(function(){
 			successHandler,
 			errorHandler, {
 				"senderID":"1047487760830",
-				"ecb":onNotificationGCM
+				"ecb":"onNotificationGCM"
 			});
 	
 	}
