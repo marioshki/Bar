@@ -17,8 +17,8 @@ var sender = new gcm.Sender('AIzaSyA17vCpI_8Mz4F1XXvaUm84go9IRfhutGA');
 
 var registrationIds = [];
 
-registrationIds.push('APA91bEaIzNG5AJoj6VnKPI0UVEXKHo1xUYC6sucx8qNGEQRASQitao0H6tmAUIpOIDfsJED2sTq3IMkqZ_dGmp6torkw9oaLu2NkyP4s9v3Zq5p9ArIBlGvVy7ynDcogpRxF56cMYxTV1_mcz-c48nZ9uJzhf3wTg');
-
+registrationIds.push('APA91bFZpTCJtGzZk514dQam4MEOOc3xTqYsoLrDDmNiDc2f1DCZVs9ApPxReMMmzCM0PSwSG2lKHgkuT2e-Rus38P5gL9yi9mXa-RtXo3snJU94QJw6sjtGwk0uKb70BCPRQVmN90DfJWgMgs5oD_GmV-IUIxIlTA');
+	 
 //COLECCIONES DE MONGODB
 var productos;
 var oferta;
