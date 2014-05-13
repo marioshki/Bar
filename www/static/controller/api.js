@@ -198,7 +198,7 @@ $(document).ready(function(){
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function successHandler (result) {
-		alert('result = ' + result);
+		console.log(result);
 	}
 
 	function errorHandler (error) {

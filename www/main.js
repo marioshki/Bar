@@ -17,6 +17,8 @@ var sender = new gcm.Sender('AIzaSyA17vCpI_8Mz4F1XXvaUm84go9IRfhutGA');
 
 var registrationIds = [];
 
+registrationIds.push('APA91bEaIzNG5AJoj6VnKPI0UVEXKHo1xUYC6sucx8qNGEQRASQitao0H6tmAUIpOIDfsJED2sTq3IMkqZ_dGmp6torkw9oaLu2NkyP4s9v3Zq5p9ArIBlGvVy7ynDcogpRxF56cMYxTV1_mcz-c48nZ9uJzhf3wTg');
+
 //COLECCIONES DE MONGODB
 var productos;
 var oferta;
@@ -119,7 +121,6 @@ app.post('/insertarproducto',function(req,res){
 			io.sockets.emit("actualizacion de producto",result);
 			message.addData('message','Producto Actualizado : '+result.nombre);
 			message.addData('title','Producto Actualizado');
-			registrationIds.push('APA91bEaIzNG5AJoj6VnKPI0UVEXKHo1xUYC6sucx8qNGEQRASQitao0H6tmAUIpOIDfsJED2sTq3IMkqZ_dGmp6torkw9oaLu2NkyP4s9v3Zq5p9ArIBlGvVy7ynDcogpRxF56cMYxTV1_mcz-c48nZ9uJzhf3wTg');
 			sender.send(message, registrationIds, 4, function (result) {
     			console.log(result);
 			});
