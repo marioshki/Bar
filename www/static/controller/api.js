@@ -193,6 +193,7 @@ app.run(function($rootScope,SocketService) {
 });
 //CUANDO SE CARGAN TODOS LOS JS SE EJECUTA ESTE EVENTO
 $(document).ready(function(){
+	var self = this;
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
 	function onNotificationGCM(e) {
@@ -252,16 +253,13 @@ $(document).ready(function(){
 	}
 
 	function onDeviceReady() {
-		function pene(e){
-			console.log(e);
-		}
 		pushNotification = window.plugins.pushNotification;
 		pushNotification.register(
 			successHandler,
 			errorHandler, {
 				"senderID":"1047487760830",
 				//"ecb":"onNotificationGCM"
-				"ecb":"pene"
+				"ecb":"self.onNotificationGCM"
 			});
 	
 	}
