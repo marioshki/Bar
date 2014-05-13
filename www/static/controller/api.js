@@ -258,7 +258,7 @@ $(document).ready(function(){
 			successHandler,
 			errorHandler, {
 				"senderID":"1047487760830",
-				"ecb":"prueba"
+				"ecb":"function(e){ console.log(e);}"
 			});
 	}
 	document.addEventListener("deviceready", onDeviceReady, false);
