@@ -195,7 +195,7 @@ app.run(function($rootScope,SocketService) {
 $(document).ready(function(){
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
-	this.onNotificationGCM = function(e) {
+	function onNotificationGCM(e) {
 		console.log(e.event);
 
 		switch( e.event )
