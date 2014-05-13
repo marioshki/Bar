@@ -193,57 +193,8 @@ app.run(function($rootScope,SocketService) {
 });
 //CUANDO SE CARGAN TODOS LOS JS SE EJECUTA ESTE EVENTO
 $(document).ready(function(){
-	var self = this;
 	$(document).foundation();
 	//Y ESTO ES UN EVENTO QUE SE EJECUTA CUANDO SE TERMINA DE INICIAR LA APP
-	function onNotificationGCM(e) {
-		console.log(e.event);
-
-		switch( e.event )
-		{
-		case 'registered':
-			if ( e.regid.length > 0 )
-			{
-				// Your GCM push server needs to know the regID before it can push to this device
-				// here is where you might want to send it the regID for later use.
-				console.log("regID = " + e.regid);
-			}
-		break;
-
-		case 'message':
-			// if this flag is set, this notification happened while we were in the foreground.
-			// you might want to play a sound to get the user's attention, throw up a dialog, etc.
-			if ( e.foreground )
-			{
-				console.log('inline notification');
-			}
-			else
-			{  // otherwise we were launched because the user touched a notification in the notification tray.
-				if ( e.coldstart )
-				{
-					console.log('coldstart notification');
-				}
-				else
-				{
-					console.log('background notification');
-				}
-			}
-			console.log("payload message" + e.payload.message);
-			//Only works for GCM
-			console.log("payload.msgcnt" + e.payload.msgcnt);
-			//Only works on Amazon Fire OS
-			console.log("payload.time" + e.payload.timeStamp);
-		break;
-
-		case 'error':
-			console.log("error : "+e.msg);
-		break;
-
-		default:
-			console.log('default');
-		break;
-		}
-	}
 	function successHandler (result) {
 		alert('result = ' + result);
 	}
@@ -253,13 +204,61 @@ $(document).ready(function(){
 	}
 
 	function onDeviceReady() {
+		function onNotificationGCM(e) {
+			console.log(e.event);
+
+			switch( e.event )
+			{
+			case 'registered':
+				if ( e.regid.length > 0 )
+				{
+					// Your GCM push server needs to know the regID before it can push to this device
+					// here is where you might want to send it the regID for later use.
+					console.log("regID = " + e.regid);
+				}
+			break;
+
+			case 'message':
+				// if this flag is set, this notification happened while we were in the foreground.
+				// you might want to play a sound to get the user's attention, throw up a dialog, etc.
+				if ( e.foreground )
+				{
+					console.log('inline notification');
+				}
+				else
+				{  // otherwise we were launched because the user touched a notification in the notification tray.
+					if ( e.coldstart )
+					{
+						console.log('coldstart notification');
+					}
+					else
+					{
+						console.log('background notification');
+					}
+				}
+				console.log("payload message" + e.payload.message);
+				//Only works for GCM
+				console.log("payload.msgcnt" + e.payload.msgcnt);
+				//Only works on Amazon Fire OS
+				console.log("payload.time" + e.payload.timeStamp);
+			break;
+
+			case 'error':
+				console.log("error : "+e.msg);
+			break;
+
+			default:
+				console.log('default');
+			break;
+			}
+		}
 		pushNotification = window.plugins.pushNotification;
 		pushNotification.register(
 			successHandler,
 			errorHandler, {
 				"senderID":"1047487760830",
 				//"ecb":"onNotificationGCM"
-				"ecb":"self.onNotificationGCM"
+				"ecb":"onNotificationGCM"
 			});
 	
 	}
