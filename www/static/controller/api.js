@@ -252,15 +252,16 @@ $(document).ready(function(){
 	}
 
 	function onDeviceReady() {
+		function pene(e){
+			console.log(e);
+		}
 		pushNotification = window.plugins.pushNotification;
 		pushNotification.register(
 			successHandler,
 			errorHandler, {
 				"senderID":"1047487760830",
 				//"ecb":"onNotificationGCM"
-				"ecb":function(e){
-					console.log(e);
-				}
+				"ecb":"pene"
 			});
 	
 	}
