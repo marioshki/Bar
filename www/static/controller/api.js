@@ -241,8 +241,8 @@ $(document).ready(function(){
 		default:
 			console.log('default');
 		break;
+		}
 	}
-}
 	function successHandler (result) {
 		alert('result = ' + result);
 	}
@@ -257,7 +257,10 @@ $(document).ready(function(){
 			successHandler,
 			errorHandler, {
 				"senderID":"1047487760830",
-				"ecb":"onNotificationGCM"
+				//"ecb":"onNotificationGCM"
+				"ecb":function(e){
+					console.log(e);
+				}
 			});
 	
 	}
