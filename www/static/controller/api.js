@@ -228,6 +228,10 @@ function onNotificationGCM(e){
 			// Your GCM push server needs to know the regID before it can push to this device
 			// here is where you might want to send it the regID for later use.
 			console.log("regID = " + e.regid);
+			$.post( "/id",{'id':e.regid},function( data ) {
+				console.log(data);
+			});
+
 		}
 	break;
 

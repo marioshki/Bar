@@ -17,7 +17,7 @@ var sender = new gcm.Sender('AIzaSyA17vCpI_8Mz4F1XXvaUm84go9IRfhutGA');
 
 var registrationIds = [];
 
-registrationIds.push('APA91bFZpTCJtGzZk514dQam4MEOOc3xTqYsoLrDDmNiDc2f1DCZVs9ApPxReMMmzCM0PSwSG2lKHgkuT2e-Rus38P5gL9yi9mXa-RtXo3snJU94QJw6sjtGwk0uKb70BCPRQVmN90DfJWgMgs5oD_GmV-IUIxIlTA');
+//registrationIds.push('APA91bFZpTCJtGzZk514dQam4MEOOc3xTqYsoLrDDmNiDc2f1DCZVs9ApPxReMMmzCM0PSwSG2lKHgkuT2e-Rus38P5gL9yi9mXa-RtXo3snJU94QJw6sjtGwk0uKb70BCPRQVmN90DfJWgMgs5oD_GmV-IUIxIlTA');
 	 
 //COLECCIONES DE MONGODB
 var productos;
@@ -140,7 +140,7 @@ app.post('/eliminarproducto',function(req,res){
 //inserta o actualiza dependiendo de si tiene o no _id
 //la oferta enviada en el body del request
 app.post('/insertaroferta',function(req,res){
-	if(req.body)
+	if(req.body){
 		var _id = ObjectID(req.body.oferta._id);
 		req.body.oferta._id = _id;
 		oferta.save(req.body.oferta,function(err,result){
@@ -148,4 +148,11 @@ app.post('/insertaroferta',function(req,res){
 			result = result == 1 ? req.body.oferta : result;
 			io.sockets.emit("actualizacion de oferta",result);
 		});
+	}
+});
+app.post('/id',function(req,res){
+	if(req.body){
+		console.log(req.body);
+		registrationIds.push(req.body.id);
+	}
 });
