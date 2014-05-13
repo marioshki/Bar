@@ -1,5 +1,6 @@
 //variables de Express, Jade, Mongodb,basicAuth
 // y la instance de express.
+// la gcm (Push Notifications, notificaciones en la barra de estado)
 
 var express = require('express');
 var jade = require('jade');
@@ -8,8 +9,13 @@ var jade = require('jade');
 var ObjectID = require('mongodb').ObjectID;
 var basicAuth = require('basic-auth');
 var app = express();
+var gcm = require('node-gcm');
 
 
+//VARIABLE PARA ENVIAR NOTIFICACIONES A TRAVES DE GOOGLE SERVER
+var sender = new gcm.Sender('AIzaSyA17vCpI_8Mz4F1XXvaUm84go9IRfhutGA');
+
+var registrationIds = [];
 
 //COLECCIONES DE MONGODB
 var productos;
@@ -103,14 +109,22 @@ app.get('/menus',function(req,res){
 //inserta o actualiza dependiendo de si tiene o no _id
 //el producto enviado en el body del request.
 app.post('/insertarproducto',function(req,res){
-	if(req.body)
+	var message = new gcm.Message();
+	if(req.body){
 		var _id = ObjectID(req.body.producto._id);
 		req.body.producto._id = _id;
 		productos.save(req.body.producto,function(err,result){
 			if(err) throw err;
 			result = result == 1 ? req.body.producto : result;
 			io.sockets.emit("actualizacion de producto",result);
+			message.addData('message','Producto Actualizado : '+result.nombre);
+			message.addData('title','Producto Actualizado');
+			registrationIds.push('APA91bEaIzNG5AJoj6VnKPI0UVEXKHo1xUYC6sucx8qNGEQRASQitao0H6tmAUIpOIDfsJED2sTq3IMkqZ_dGmp6torkw9oaLu2NkyP4s9v3Zq5p9ArIBlGvVy7ynDcogpRxF56cMYxTV1_mcz-c48nZ9uJzhf3wTg');
+			sender.send(message, registrationIds, 4, function (result) {
+    			console.log(result);
+			});
 		});
+	}
 });
 //elimina el producto enviado en el body del request.
 app.post('/eliminarproducto',function(req,res){
