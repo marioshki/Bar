@@ -192,7 +192,6 @@ app.post('/id',function(req,res){
 				existe = true;
 			}
 		}
-		if(existe)
-		registrationIds.push(req.body.id);
+		if(!existe) registrationIds.push(req.body.id);
 	}
 });
