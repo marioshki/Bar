@@ -186,6 +186,13 @@ app.post('/insertarmenu',function(req,res){
 app.post('/id',function(req,res){
 	if(req.body){
 		console.log(req.body);
+		var existe = false;
+		for (index = 0; index < registrationIds.length; ++index) {
+			if(registrationIds[index] == req.body.id){
+				existe = true;
+			}
+		}
+		if(existe)
 		registrationIds.push(req.body.id);
 	}
 });
