@@ -136,6 +136,12 @@ app.post('/eliminarproducto',function(req,res){
 		productos.remove(req.body.producto,function(err,result){
 			if(err) throw err;
 			io.sockets.emit("eliminacion de producto",req.body.producto);
+			message.addData('message','Producto eliminado : '+req.body.nombre);
+			message.addData('title','Producto Actualizado');
+			console.log(registrationIds);
+			sender.send(message, registrationIds, 4, function (result) {
+    			console.log(result);
+			});
 		});
 });
 //inserta o actualiza dependiendo de si tiene o no _id
@@ -148,6 +154,12 @@ app.post('/insertaroferta',function(req,res){
 			if(err) throw err;
 			result = result == 1 ? req.body.oferta : result;
 			io.sockets.emit("actualizacion de oferta",result);
+			message.addData('message','Se ha actualizado la oferta de la semana!');
+			message.addData('title','Oferta Actualizada!');
+			console.log(registrationIds);
+			sender.send(message, registrationIds, 4, function (result) {
+    			console.log(result);
+			});
 		});
 	}
 });
@@ -159,6 +171,12 @@ app.post('/insertarmenu',function(req,res){
 			if(err) throw err;
 			result = result ==1 ? req.body.menu : result;
 			io.sockets.emit("actualizacion de menu",result);
+			message.addData('message','Se actualizo el menu del dia '+result.dia);
+			message.addData('title','Menu Actualizado');
+			console.log(registrationIds);
+			sender.send(message, registrationIds, 4, function (result) {
+    			console.log(result);
+			});
 		})
 
 });

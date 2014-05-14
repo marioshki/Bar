@@ -108,16 +108,6 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 		'racion',
 		'cubata'
 	];
-	$scope.dias =
-	[
-		'lunes',
-		'martes',
-		'miercoles',
-		'jueves',
-		'viernes',
-		'sabado',
-		'domingo'
-	];
 
 	$rootScope.$on('actualizarproducto', function(ev, data) {
 		var encontrado = false;
