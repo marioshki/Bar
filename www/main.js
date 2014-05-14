@@ -130,6 +130,7 @@ app.post('/insertarproducto',function(req,res){
 });
 //elimina el producto enviado en el body del request.
 app.post('/eliminarproducto',function(req,res){
+	var message = new gcm.Message();
 	if(req.body)
 		var _id = ObjectID(req.body.producto._id);
 		req.body.producto._id = _id;
@@ -147,6 +148,7 @@ app.post('/eliminarproducto',function(req,res){
 //inserta o actualiza dependiendo de si tiene o no _id
 //la oferta enviada en el body del request
 app.post('/insertaroferta',function(req,res){
+	var message = new gcm.Message();
 	if(req.body){
 		var _id = ObjectID(req.body.oferta._id);
 		req.body.oferta._id = _id;
@@ -165,6 +167,7 @@ app.post('/insertaroferta',function(req,res){
 });
 
 app.post('/insertarmenu',function(req,res){
+	var message = new gcm.Message();
 	var _id = ObjectID(req.body.menu._id);
 	req.body.menu._id = _id;
 		menus.save(req.body.menu,function(err,result){
@@ -178,7 +181,6 @@ app.post('/insertarmenu',function(req,res){
     			console.log(result);
 			});
 		})
-
 });
 
 app.post('/id',function(req,res){

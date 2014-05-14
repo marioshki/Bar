@@ -11,7 +11,7 @@ app.service('SocketService', function($rootScope) {
 	});
 
 	socket.on('actualizacion de oferta', function (data) {
-		navigator.notification.alert("Se ha actualizado la oferta!",null,"Oferta actualizada!");
+		navigator.notification.alert("Se ha actualizado la oferta! ",null,"Oferta actualizada!");
 		$rootScope.$emit("actualizaroferta",data);
 	});
 
@@ -21,7 +21,7 @@ app.service('SocketService', function($rootScope) {
 	});
 
 	socket.on('actualizacion de menu',function(data){
-		navigator.notification.alert("Se ha actualizado el menu del" + data.dia,null,"Menu Actualizado!");
+		navigator.notification.alert("Se ha actualizado el menu del " + data.dia,null,"Menu Actualizado!");
 		$rootScope.$emit("actualizarmenu",data);
 	});
 
