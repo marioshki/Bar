@@ -2,23 +2,29 @@ var app = angular.module('app',['ngRoute']);
 
 var pushNotification;
 
-var prueba;
-
 app.service('SocketService', function($rootScope) {
 	var socket = io.connect(window.location.origin);
 
 	socket.on('actualizacion de producto', function (data) {
-		navigator.notification.alert("Se ha actualizado un producto: " + data.nombre, null, "Producto Actualizado")
+		navigator.notification.alert("Se ha actualizado un producto: " + data.nombre, null, "Producto Actualizado!");
 		$rootScope.$emit("actualizarproducto",data);
 	});
 
 	socket.on('actualizacion de oferta', function (data) {
+		navigator.notification.alert("Se ha actualizado la oferta!",null,"Oferta actualizada!");
 		$rootScope.$emit("actualizaroferta",data);
 	});
 
 	socket.on('eliminacion de producto', function (data) {
+		navigator.notification.alert("Se ha eliminado un producto: "+ data.nombre,null,"Producto Eliminado!");
 		$rootScope.$emit("eliminarproducto",data);
 	});
+
+	socket.on('actualizacion de menu',function(data){
+		navigator.notification.alert("Se ha actualizado el menu del" + data.dia,null,"Menu Actualizado!");
+		$rootScope.$emit("actualizarmenu",data);
+	});
+
 });
 
 app.config(function($routeProvider, $locationProvider) {
@@ -56,8 +62,8 @@ app.controller('Controller',function($scope){
 });
 
 app.controller('adminController',function($scope,$http,$route,$rootScope){
-
-	$scope.nuevoproducto = {nombre:"",clase:"",precio:""}
+	$scope.nuevomenu = {dia:"",descripcion:""};
+	$scope.nuevoproducto = {nombre:"",clase:"",precio:""};
 	$http({method:'GET',url:'/oferta'})
 	.success(function(data,status,headers,config){
 		$scope.oferta = data[0];
@@ -72,6 +78,14 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 	.error(function(data,status,headers,config){
 	});
 
+	$http({method:'GET',url:'/menus'})
+	.success(function(data,status,headers,config){
+		$scope.menus = data;
+		console.log(data);
+	})
+	.error(function(data,status,headers,config){
+	});
+
 	$scope.guardarProducto = function(producto){
 		$http({method:'POST',url:'/insertarproducto',data:{producto:producto}})
 	}
@@ -80,6 +94,9 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 	}
 	$scope.eliminarProducto = function(producto){
 		$http({method:'POST',url:'/eliminarproducto',data:{producto:producto}})
+	}
+	$scope.guardarMenu = function(menu){
+		$http({method:'POST',url:'/insertarmenu',data:{menu:menu}})
 	}
 
 	$scope.clases = 
@@ -90,6 +107,16 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 		'bocadillo',
 		'racion',
 		'cubata'
+	];
+	$scope.dias =
+	[
+		'lunes',
+		'martes',
+		'miercoles',
+		'jueves',
+		'viernes',
+		'sabado',
+		'domingo'
 	];
 
 	$rootScope.$on('actualizarproducto', function(ev, data) {
@@ -112,6 +139,21 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 			return prod._id == data._id;
 		});
 		$scope.productos = nuevosproductos;
+		$scope.$apply();
+	});
+
+	$rootScope.$on('actualizarmenu', function(ev, data) {
+		var encontrado = false;
+		_.each($scope.productos, function(obj){
+			if(obj._id === data._id){
+				_.extend(obj, data);
+				encontrado = true;
+			}
+		});
+		if(!encontrado){
+			$scope.menus.push(data);
+			_.extend($scope.nuevomenu, {dia:"",descripcion:""});
+		}
 		$scope.$apply();
 	});
 
@@ -146,6 +188,21 @@ app.controller('prodController', function($scope, $http, $rootScope){
 		});
 		if(!encontrado){
 			$scope[clase].push(data);
+		}
+		$scope.$apply();
+	});
+
+	$rootScope.$on('actualizarmenu', function(ev, data) {
+		var encontrado = false;
+		var dia = data.dia;
+		_.each($scope[dia], function(obj){
+			if(obj._id === data._id){
+				_.extend(obj, data);
+				encontrado = true;
+			}
+		});
+		if(!encontrado){
+			$scope[dia].push(data);
 		}
 		$scope.$apply();
 	});

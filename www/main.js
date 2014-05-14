@@ -151,6 +151,17 @@ app.post('/insertaroferta',function(req,res){
 		});
 	}
 });
+app.post('/insertarmenu',function(req,res){
+	var _id = ObjectID(req.body.menu._id);
+	req.body.menu._id = _id;
+		menus.save(req.body.menu,function(err,result){
+			if(err) throw err;
+			result = result ==1 ? req.body.menu : result;
+			io.sockets.emit("actualizacion de menu",result);
+		})
+
+});
+
 app.post('/id',function(req,res){
 	if(req.body){
 		console.log(req.body);
