@@ -81,7 +81,6 @@ app.controller('adminController',function($scope,$http,$route,$rootScope){
 	$http({method:'GET',url:'/menus'})
 	.success(function(data,status,headers,config){
 		$scope.menus = data;
-		console.log(data);
 	})
 	.error(function(data,status,headers,config){
 	});
@@ -173,8 +172,7 @@ app.controller('prodController', function($scope, $http, $rootScope){
 			if(obj._id === data._id){
 				_.extend(obj, data);
 				encontrado = true;
-			}
-				
+			}	
 		});
 		if(!encontrado){
 			$scope[clase].push(data);

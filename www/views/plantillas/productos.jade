@@ -1,80 +1,80 @@
 script(type="text/ng-template" id="productos.html")
 	div(ng-repeat="bebida in bebidas")
-	dl(data-accordion).accordion.blur
-		dd
-			a(data-target="#panel1") Bebidas
+	dl(data-accordion).accordion.blur.text-center
+		dd.text-center
+			a(data-target="#panel1").text-center Bebidas
 			div#panel1.content
-				dl(data-tab).tabs
-					dd.active
-						a(data-target="#panel1-1") Vinos
-					dd
-						a(data-target="#panel1-2") Cervezas
-					dd
-						a(data-target="#panel1-3") Cubatas
-					dd
-						a(data-target="#panel1-4") Licores
+				dl(data-tab).tabs.text-center
+					dd.active.text-center
+						a(data-target="#panel1-1").text-center Vinos
+					dd.text-center
+						a(data-target="#panel1-2").text-center Cervezas
+					dd.text-center
+						a(data-target="#panel1-3").text-center Cubatas
+					dd.text-center
+						a(data-target="#panel1-4").text-center Licores
 				div.tabs-content
 					div#panel1-1.content
 						div(ng-repeat="v in vino")
-							p {{v.nombre}} : {{v.precio}} €
+							p.text-center {{v.nombre}} : {{v.precio}} €
 					div#panel1-2.content
 						div(ng-repeat="c in cerveza")
-							p {{c.nombre}} : {{c.precio}} €
+							p.text-center {{c.nombre}} : {{c.precio}} €
 					div#panel1-3.content
 						div(ng-repeat="c in cubata")
-							p {{c.nombre}} : {{c.precio}} €
+							p.text-center {{c.nombre}} : {{c.precio}} €
 					div#panel1-4.content
 						div(ng-repeat="l in licor")
-							p {{l.nombre}} : {{l.precio}} €
+							p.text-center {{l.nombre}} : {{l.precio}} €
 
-		dd
-			a(data-target="#panel2") Tapas
+		dd.text-center
+			a(data-target="#panel2").text-center.tapas Tapas
 			div#panel2.content
-				dl(data-tab).tabs
-					dd
-						a(data-target="#panel2-1") Mini-Bocadillos
-					dd
-						a(data-target="#panel2-2") Raciones
+				dl(data-tab).tabs.text-center
+					dd.text-center
+						a(data-target="#panel2-1").text-center Mini-Bocadillos
+					dd.text-center
+						a(data-target="#panel2-2").text-center Raciones
 
 				div.tabs-content
 					div#panel2-1.content
-						div(ng-repeat="m in bocadillo")
+						div(ng-repeat="m in bocadillo").text-center
 							p {{m.nombre}} : {{m.precio}} €
 					div#panel2-2.content
-						div(ng-repeat="r in racion")
+						div(ng-repeat="r in racion").text-center
 							p {{r.nombre}} : {{r.precio}} €
 
-		dd
-			a(data-target="#panel3") Menús
+		dd.text-center
+			a(data-target="#panel3").text-center.menus Menús
 			div#panel3.content
-				dl(data-tab).tabs
-					dd
-						a(data-target="#panel3-1") Lunes
-					dd
-						a(data-target="#panel3-2") Martes
-					dd
-						a(data-target="#panel3-3") Miercoles
-					dd
-						a(data-target="#panel3-4") Jueves
-					dd
-						a(data-target="#panel3-5") Viernes
-					dd
-						a(data-target="#panel3-6") Sabado
-					dd
-						a(data-target="#panel3-7") Domingo
+				dl(data-tab).tabs.text-center
+					dd.text-center
+						a(data-target="#panel3-1").text-center Lunes
+					dd.text-center
+						a(data-target="#panel3-2").text-center Martes
+					dd.text-center
+						a(data-target="#panel3-3").text-center Miercoles
+					dd.text-center
+						a(data-target="#panel3-4").text-center Jueves
+					dd.text-center
+						a(data-target="#panel3-5").text-center Viernes
+					dd.text-center
+						a(data-target="#panel3-6").text-center Sabado
+					dd.text-center
+						a(data-target="#panel3-7").text-center Domingo
 
 				div.tabs-content
 					div#panel3-1.content
-						p {{lunes.descripcion}}
+						p.text-center {{lunes.descripcion}}
 					div#panel3-2.content
-						p {{martes.descripcion}}
+						p.text-center {{martes.descripcion}}
 					div#panel3-3.content
-						p {{miercoles.descripcion}}
+						p.text-center {{miercoles.descripcion}}
 					div#panel3-4.content
-						p {{jueves.descripcion}}
+						p.text-center {{jueves.descripcion}}
 					div#panel3-5.content
-						p {{viernes.descripcion}}	
+						p.text-center {{viernes.descripcion}}	
 					div#panel3-6.content
-						p {{sabado.descripcion}}
+						p.text-center {{sabado.descripcion}}
 					div#panel3-7.content
-						p {{domingo.descripcion}}			
+						p.text-center {{domingo.descripcion}}			
